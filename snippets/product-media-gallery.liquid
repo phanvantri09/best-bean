@@ -182,10 +182,13 @@
     or section.settings.mobile_thumbnails == 'show'
   -%}
     <slider-component
+    style="background-color: #f6f5ee;"
       id="GalleryThumbnails-{{ section.id }}{{ id_append }}"
-      class="thumbnail-slider slider-mobile-gutter quick-add-hidden{% unless section.settings.gallery_layout contains 'thumbnail' %} medium-hide large-up-hide{% endunless %}{% if section.settings.mobile_thumbnails != 'show' %} small-hide{% endif %}{% if media_count <= 3 %} thumbnail-slider--no-slide{% endif %}"
+      class="thumbnail-slider slider-mobile-gutter quick-add-hidden{% unless section.settings.gallery_layout contains 'thumbnail' %} medium-hide large-up-hide{% endunless %}
+      {% comment %} {% if section.settings.mobile_thumbnails != 'show' %} small-hide{% endif %} {% endcomment %}
+      {% if media_count <= 3 %} thumbnail-slider--no-slide{% endif %}"
     >
-      <button
+      {% comment %} <button
         type="button"
         class="slider-button slider-button--prev{% if media_count <= 3 %} small-hide{% endif %}{% if media_count <= 4 %} medium-hide large-up-hide{% endif %}"
         name="previous"
@@ -194,7 +197,7 @@
         data-step="3"
       >
         {% render 'icon-caret' %}
-      </button>
+      </button> {% endcomment %}
       {% if product.tags contains 'Tasting_Bundles' %}
       <ul
       style="background-color: #f6f5ee; padding: 40px;"
@@ -321,7 +324,7 @@
         {%- endfor -%}
       </ul>
     {%- endif -%}
-      <button
+      {% comment %} <button
         type="button"
         class="slider-button slider-button--next{% if media_count <= 3 %} small-hide{% endif %}{% if media_count <= 4 %} medium-hide large-up-hide{% endif %}"
         name="next"
@@ -330,7 +333,7 @@
         data-step="3"
       >
         {% render 'icon-caret' %}
-      </button>
+      </button> {% endcomment %}
     </slider-component>
   {%- endif -%}
 </media-gallery>
