@@ -1,0 +1,700 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+{{ 'account-main-order.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<div class="customer account section-{{ section.id }}-padding">
+  {%- if section.settings.title != blank or section.settings.text != blank -%}
+    <header class="header-form">
+      {%- if section.settings.title != blank -%}
+        <h1>
+          {{ section.settings.title | escape }}
+        </h1>
+      {%- endif -%}
+
+      {%- if section.settings.text != blank -%}
+        <div class="section-heading__subheading">
+          <div class="rte {{ section.settings.text_style }}">
+            {{ section.settings.text }}
+          </div>
+        </div>
+      {%- endif -%}
+    </header>
+  {%- endif -%}
+
+  <div class="tab tab-account">
+    <div
+      class="
+        {% if customer.tags contains 'wholesaler' %}
+          form-account-header-account-wholesale
+        {% else %}
+          form-account-header-account
+        {% endif %}
+      "
+    >
+      <button class="tablinks active tablinks-customer" onclick="openCity(event, 'customerAccount')">
+        Your Infomation
+      </button>
+      <button class="tablinks tablinks-wholesaler" onclick="openCity(event, 'wholesalerAccount')">
+        Your Order History
+      </button>
+      {% if customer.tags contains 'wholesaler' %}
+      {% else %}
+        <button class="tablinks tablinks-subscriptions" onclick="openCity(event, 'subscriptions')">
+          Your Subscriptions
+        </button>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="form-account-main">
+    <div id="customerAccount" class="tabcontent customer-class">
+      {%- form 'customer', class: 'customer-form' -%}
+        <div class="contact-form contact-form-mobile--{{ section.settings.image_height_mobile }} contact-form-large--{{ section.settings.image_height_large }} {% if section.settings.form_first %}contact-form--reverse{% endif %} {% if section.settings.custom_colors %}{% else %}{% if section.settings.color_scheme != 'soft' %}color color-{{ section.settings.color_scheme }}{% endif %} color-gradient{% else %}contact-form--margin-top contact-form--bordered{% endif %}">
+          <div class="form {% if section.settings.layout == 'full' %}form--no-padding{% endif %}">
+            {%- if form.posted_successfully? -%}
+              <span class="form-message small-text" id="Contact-success--{{ section.id }}" tabindex="-1" autofocus>
+                {% comment %} {% render 'icon' with 'green-check' %} {% endcomment %}
+                <span>success</span>
+              </span>
+            {%- endif -%}
+
+            {%- if form.errors -%}
+              <small class="form-message small-text" id="Contact-error--{{ section.id }}">
+                {% comment %} {% render 'icon' with 'red-exclamation' %}{{ form.errors | default_errors }} {% endcomment %}
+              </small>
+            {%- endif -%}
+            {% comment %}
+              <div class="form-account">
+                <input
+                  type="email"
+                  name="customer[email]"
+                  id="RegisterForm-email"
+                  value="{{ customer.email }}"
+                  spellcheck="false"
+                  autocapitalize="off"
+                  autocomplete="email"
+                  aria-required="true"
+                  {% if form.errors contains 'email' %}
+                    aria-invalid="true"
+                    aria-describedby="RegisterForm-email-error"
+                  {% endif %}
+                  placeholder=""
+                >
+                <label for="RegisterForm-Email">
+                  {{ 'customer.register.email' | t }}
+                </label>
+              </div>
+            {% endcomment %}
+            <div class="form-row">
+              <div class="form-account">
+                <input
+                  class="input__field"
+                  type="text"
+                  name="customer[first_name]"
+                  id="RegisterForm-FirstName"
+                  value="{{ customer.first_name }}"
+                  autocomplete="given-name"
+                  placeholder=""
+                >
+                <label for="RegisterForm-FirstName" class="input__label">
+                  {{ 'customer.register.first_name' | t }}
+                </label>
+              </div>
+              <div class="form-account">
+                <input
+                  class="input__field"
+                  type="text"
+                  name="customer[last_name]"
+                  id="RegisterForm-FirstName"
+                  value="{{ customer.last_name }}"
+                  autocomplete="given-name"
+                  placeholder=""
+                >
+                <label for="RegisterForm-FirstName" class="input__label">
+                  {{ 'customer.register.last_name' | t }}
+                </label>
+              </div>
+            </div>
+
+            <div class="form-account">
+              <input
+                class="input__field"
+                type="text"
+                name="address[company]"
+                id="RegisterForm-LastName"
+                value="{{ customer.default_address.company }}"
+                autocomplete="family-name"
+                placeholder=""
+              >
+              <label for="RegisterForm-LastName" class="input__label">
+                {{ 'customer.register.business_name' | t }}
+              </label>
+            </div>
+
+            <div class="form-account">
+              <input
+                class="input__field"
+                type="text"
+                name="address[address1]"
+                id="RegisterForm-LastName"
+                value="{{ customer.default_address.address1 }}"
+                autocomplete="family-name"
+                placeholder=""
+              >
+              <label for="RegisterForm-LastName" class="input__label">
+                Address
+                {% comment %} {{ 'customer.register.business_location' | t }} {% endcomment %}
+              </label>
+            </div>
+            <div class="form-account">
+              <input
+                class="input__field"
+                type="text"
+                name="address[city]"
+                id="RegisterForm-password"
+                aria-required="true"
+                value="{{ customer.default_address.city }}"
+                placeholder=""
+              >
+              <label for="RegisterForm-Password" class="input__label">
+                City
+                {% comment %} {{ 'customer.register.password' | t }} {% endcomment %}
+              </label>
+            </div>
+
+            {% comment %}
+              <div class="form-account">
+                <input
+                  class="input__field"
+                  type="text"
+                  name="customer[city]"
+                  id="RegisterForm-password"
+                  aria-required="true"
+                  value="{{ customer.addresses.city }}"
+                  placeholder=""
+                >
+                <label for="RegisterForm-Password" class="input__label">
+                  State
+                </label>
+              </div>
+            {% endcomment %}
+
+            {%- for block in section.blocks -%}
+              {%- liquid
+                assign count = 0
+                assign input_label = block.settings.title | escape
+
+                if input_label == blank
+                  assign count = count | plus: 1
+                  assign input_label = 'Label ' | append: count
+                endif
+              -%}
+
+              <div class="input-group">
+                {%- case block.type -%}
+                  {%- when 'dropdown-menu' -%}
+                    {%- assign options = block.settings.options | split: ',' -%}
+
+                    {%- if options == blank -%}
+                      {%- continue -%}
+                    {%- endif -%}
+
+                    <label
+                      class="input__label input__label--select"
+                      for="Contact-{{ input_label | handle }}-{{ section.id }}"
+                    >
+                      {{ input_label | escape -}}
+                      {%- if block.settings.required %}*{% endif %}
+                    </label>
+                    {% if input_label == 'State' %}
+                      <div class="input__select-wrapper">
+                        <select
+                          {% if customer.default_address.province != blank %}
+                            style="background-color: white; border-bottom: 1px solid #000;"
+                          {% endif %}
+                          id="Contact-{{ input_label | handle }}-{{ section.id }}"
+                          class="input__select"
+                          name="address[province]"
+                          {% if block.settings.required %}
+                            required
+                          {% endif %}
+                          onchange="changeBackgroundColor(this)"
+                        >
+                          {% comment %} province là state {% endcomment %}
+                          {% if customer.default_address.province %}
+                            <option selected value="{{ customer.default_address.province }}">
+                              {{ customer.default_address.province }}
+                            </option>
+                          {% else %}
+                            <option selected disabled>---</option>
+                          {% endif %}
+
+                          {%- for option in options -%}
+                            <option value="{{ option | strip | escape }}">
+                              {{ option | strip | escape }}
+                            </option>
+                          {%- endfor -%}
+                        </select>
+                        <span> </span>
+                      </div>
+                    {% endif %}
+                    {% if input_label == 'Postcode/Zip Code' %}
+                      <div class="input__select-wrapper">
+                        <select
+                          {% if customer.default_address.zip != blank %}
+                            style="background-color: white; border-bottom: 1px solid #000;"
+                          {% endif %}
+                          id="Contact-{{ input_label | handle }}-{{ section.id }}"
+                          class="input__select"
+                          name="address[zip]"
+                          {% if block.settings.required %}
+                            required
+                          {% endif %}
+                          onchange="changeBackgroundColor(this)"
+                        >
+                          {% comment %} province là state {% endcomment %}
+                          {% if customer.default_address.zip %}
+                            <option selected value="{{ customer.default_address.zip }}">
+                              {{ customer.default_address.zip }}
+                            </option>
+                          {% else %}
+                            <option selected disabled>---</option>
+                          {% endif %}
+
+                          {%- for option in options -%}
+                            <option value="{{ option | strip | escape }}">
+                              {{ option | strip | escape }}
+                            </option>
+                          {%- endfor -%}
+                        </select>
+                        <span> </span>
+                      </div>
+                    {% endif %}
+                {%- endcase -%}
+              </div>
+            {%- endfor -%}
+
+            <div class="form-account">
+              <input
+                class="input__field"
+                type="tel"
+                name="address[phone]"
+                id="RegisterForm-LastName"
+                value="{{ customer.phone }}"
+                autocomplete="family-name"
+                placeholder=""
+              >
+              <label for="RegisterForm-LastName" class="input__label">
+                Phone
+                {% comment %} {{ 'customer.register.phone' | t }} {% endcomment %}
+              </label>
+            </div>
+            <div class="btn-account">
+              <button class="btn-submit">Update</button>
+              <button class="btn-reset">
+                <a href="{{ routes.account_logout_url }}"> {{ 'customer.log_out' | t }} </a>
+              </button>
+              <button class="btn-delete">Delete Account</button>
+            </div>
+          </div>
+        </div>
+      {%- endform -%}
+    </div>
+    <div id="wholesalerAccount" class="tabcontent wholesaler-class">
+      <div class="main-account-container">
+        {% paginate customer.orders by 20 %}
+          {%- if customer.orders.size > 0 -%}
+            {%- for order in customer.orders -%}
+              {% if order.tags contains 'Subscription' %}
+              {% else %}
+                <div class="order-item">
+                  <div class="order-details">
+                    {% comment %}
+                      <span class="reorder-btn">
+                        {%- render 'icon-dot' -%}
+                        &nbsp;{{ order.fulfillment_status_label -}}
+                      </span>
+                    {% endcomment %}
+                    <h3>{{ order.name | split: '#' }}</h3>
+                    <p>
+                      {{ order.created_at | date: ' Placed on %A, %d %b %Y %H:%M %P' }}
+                      {% comment %} {%- render 'icon-dot' -%} {% endcomment %}
+                    </p>
+                    <p>
+                      {{ order.item_count }} items
+                      {%- render 'icon-dot' -%}
+                      {{ order.total_price | money_with_currency }}
+                    </p>
+                    <div class="btn-account">
+                      <button class="btn-detail">
+                        <a href="{{ order.customer_url }}"> View Detail </a>
+                      </button>
+                      {% liquid
+                        assign reorder_url = ''
+                        for line_item in order.line_items
+                          assign reorder_url = reorder_url | append: line_item.variant_id | append: ':' | append: line_item.quantity | append: ','
+                        endfor
+                      -%}
+                      <button class="btn-reoder">
+                        <a
+                          href="/cart/{{ reorder_url }}"
+                          class="yourbuttonclass"
+                          >Reorder</a
+                        >
+                      </button>
+                      {% comment %}
+                        <button class="btn-reoder">
+                          <a href="{{ order.order_status_url }}"> Reorder </a>
+                        </button>
+                      {% endcomment %}
+                    </div>
+                  </div>
+                  {% comment %} <button class="reorder-btn">Reorder</button> {% endcomment %}
+                  <div class="product-img-order">
+                    {% for line_item in order.line_items %}
+                      {% if line_item.index == 0 %}
+                        <img
+                          src="{{ line_item.product.featured_image.src | img_url: 'master' }}"
+                          alt="Product Image"
+                          loading="lazy"
+                        >
+                      {% elsif line_item.index == 1 %}
+                        <div class="image-all-product">
+                          <img
+                            src="{{ line_item.product.featured_image.src | img_url: 'master' }}"
+                            alt="Product Image"
+                            loading="lazy"
+                          >
+                          <div class="middle">
+                            <div class="image-all-product-text">+{{ order.item_count | minus: 1 }}</div>
+                          </div>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+              {{ customer.email_subscription_status }}
+            {%- endfor -%}
+          {%- else -%}
+            <p>{{ 'customer.orders.none' | t }}</p>
+          {%- endif -%}
+        {% endpaginate %}
+
+        {% comment %}
+          {% paginate customer.orders by 20 %}
+            {%- if customer.orders.size > 0 -%}
+              <table role="table" class="order-history">
+                <caption class="visually-hidden">
+                  {{ 'customer.orders.title' | t }}
+                </caption>
+                <thead role="rowgroup">
+                  <tr role="row">
+                    <th id="ColumnOrder" scope="col" role="columnheader">{{ 'customer.orders.order_number' | t }}</th>
+                    <th id="ColumnDate" scope="col" role="columnheader">{{ 'customer.orders.date' | t }}</th>
+                    <th id="ColumnPayment" scope="col" role="columnheader">
+                      {{ 'customer.orders.payment_status' | t }}
+                    </th>
+                    <th id="ColumnFulfillment" scope="col" role="columnheader">
+                      {{ 'customer.orders.fulfillment_status' | t }}
+                    </th>
+                    <th id="ColumnTotal" scope="col" role="columnheader">{{ 'customer.orders.total' | t }}</th>
+                  </tr>
+                </thead>
+                <tbody role="rowgroup">
+                  {%- for order in customer.orders -%}
+                    <tr role="row">
+                      <td
+                        id="RowOrder"
+                        role="cell"
+                        headers="ColumnOrder"
+                        data-label="{{ 'customer.orders.order_number' | t }}"
+                      >
+                        <a
+                          href="{{ order.customer_url }}"
+                          aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}"
+                        >
+                          {{ order.name }}
+                        </a>
+                      </td>
+                      <td headers="RowOrder ColumnDate" role="cell" data-label="{{ 'customer.orders.date' | t }}">
+                        {{ order.created_at | time_tag: format: 'date' }}
+                      </td>
+                      <td
+                        headers="RowOrder ColumnPayment"
+                        role="cell"
+                        data-label="{{ 'customer.orders.payment_status' | t }}"
+                      >
+                        {{ order.financial_status_label }}
+                      </td>
+                      <td
+                        headers="RowOrder ColumnFulfillment"
+                        role="cell"
+                        data-label="{{ 'customer.orders.fulfillment_status' | t }}"
+                      >
+                        {{ order.fulfillment_status_label }}
+                      </td>
+                      <td headers="RowOrder ColumnTotal" role="cell" data-label="{{ 'customer.orders.total' | t }}">
+                        {{ order.total_net_amount | money_with_currency }}
+                      </td>
+                    </tr>
+                  {%- endfor -%}
+                </tbody>
+              </table>
+            {%- else -%}
+              <p>{{ 'customer.orders.none' | t }}</p>
+            {%- endif -%}
+
+              {%- if paginate.pages > 1 -%}
+                {%- if paginate.parts.size > 0 -%}
+                  <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+                    <ul role="list">
+                      {%- if paginate.previous -%}
+                        <li>
+                          <a href="{{ paginate.previous.url }}" aria-label="{{ 'general.pagination.previous' | t }}">
+                            <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                            </svg>
+                          </a>
+                        </li>
+                      {%- endif -%}
+
+                      {%- for part in paginate.parts -%}
+                        <li>
+                          {%- if part.is_link -%}
+                            <a href="{{ part.url }}" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">
+                              {{- part.title -}}
+                            </a>
+                          {%- else -%}
+                            {%- if part.title == paginate.current_page -%}
+                              <span
+                                aria-current="page"
+                                aria-label="{{ 'general.pagination.page' | t: number: part.title }}"
+                              >
+                                {{- part.title -}}
+                              </span>
+                            {%- else -%}
+                              <span>{{ part.title }}</span>
+                            {%- endif -%}
+                          {%- endif -%}
+                        </li>
+                      {%- endfor -%}
+
+                      {%- if paginate.next -%}
+                        <li>
+                          <a href="{{ paginate.next.url }}" aria-label="{{ 'general.pagination.next' | t }}">
+                            <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                            </svg>
+                          </a>
+                        </li>
+                      {%- endif -%}
+                    </ul>
+                  </nav>
+                {%- endif -%}
+              {%- endif -%}
+          {% endpaginate %}
+        {% endcomment %}
+      </div>
+    </div>
+    {% if customer.tags contains 'wholesaler' %}
+    {% else %}
+      <div id="subscriptions" class="tabcontent subscriptions-class">
+        <div class="main-account-container">
+          {% paginate customer.orders by 20 %}
+            {%- if customer.orders.size > 0 -%}
+              {%- for order in customer.orders -%}
+                {% if order.tags contains 'Subscription' %}
+                  <div class="order-item">
+                    <div class="order-details">
+                      <span class="reorder-btn btn-sub">
+                        {%- render 'icon-dot' -%}
+                        &nbsp;{{ order.tags[1] }}
+                        {% comment %} {{ order.fulfillment_status_label -}} {% endcomment %}
+                      </span>
+                      <h3>{{ order.name | split: '#' }}</h3>
+                      <span>{{ customer.subscriptions }}</span>
+                      <p>
+                        {{ order.created_at | date: '%H:%M' }} &nbsp;
+                        {%- render 'icon-dot' -%}
+                        &nbsp; {{ order.created_at | date: '%d %b %Y' }}
+                        {% comment %} {%- render 'icon-dot' -%} {% endcomment %}
+                      </p>
+                      <p>
+                        {{ order.item_count }} items
+                        {%- render 'icon-dot' -%}
+                        {{ order.total_price | money_with_currency }}
+                      </p>
+                      <div class="btn-account">
+                        <button class="btn-detail">
+                          <a href="{{ order.customer_url }}"> View Detail </a>
+                        </button>
+                        <a
+                          href="https://shopify.com/52598210721/account/pages/e85ad72a-1b9d-4038-8e07-a4d61164ed72"
+                          class="btn-cancel"
+                        >
+                          Cancel Subscription
+                        </a>
+                      </div>
+                    </div>
+                    <div class="product-img-order">
+                      {% for line_item in order.line_items %}
+                        {% if line_item.index == 0 %}
+                          <img
+                            src="{{ line_item.product.featured_image.src | img_url: 'master' }}"
+                            alt="Product Image"
+                            loading="lazy"
+                          >
+                        {% elsif line_item.index == 1 %}
+                          <div class="image-all-product">
+                            <img
+                              src="{{ line_item.product.featured_image.src | img_url: 'master' }}"
+                              alt="Product Image"
+                              loading="lazy"
+                            >
+                            <div class="middle">
+                              <div class="image-all-product-text">+{{ order.item_count | minus: 1 }}</div>
+                            </div>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+                {% endif %}
+              {%- endfor -%}
+            {%- else -%}
+              <p>{{ 'customer.orders.none' | t }}</p>
+            {%- endif -%}
+          {% endpaginate %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+<script src="{{ 'account.js' | asset_url }}" defer="defer"></script>
+{% schema %}
+{
+  "name": "t:sections.main-account.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Your Profile",
+      "label": "Your Profile"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "default": "<p>Login</p>",
+      "label": "t:sections.rich-text.blocks.text.settings.text.label"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text-field",
+      "name": "Text field",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required field",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "multi_line_field",
+          "label": "Multi-line field",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label"
+        }
+      ]
+    },
+    {
+      "type": "dropdown-menu",
+      "name": "Dropdown menu",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required field",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label"
+        },
+        {
+          "type": "text",
+          "id": "options",
+          "label": "Options",
+          "default": "Option 1, Option 2, Option 3",
+          "info": "Separate each option with a comma"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wholesale section",
+      "blocks": [
+        {
+          "type": "text-field",
+          "settings": {
+            "title": "Name",
+            "required": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

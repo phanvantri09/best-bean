@@ -1,0 +1,112 @@
+{{ 'faq.css' | asset_url | stylesheet_tag }}
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var accTitles = $('.acc__title');
+    var accPanels = $('.acc__panel');
+    var promotionMessage = $('.promotion-message');
+    var promotionTags = $('.Product-promotions-tag');
+
+    accTitles.click(function(event) {
+      var dropDown = $(this).closest('.acc__card').find('.acc__panel');
+      var activeTitles = $(this).closest('.acc').find('.acc__title.active');
+
+      accPanels.not(dropDown).slideUp();
+      $(this).toggleClass('active');
+
+      dropDown.stop(false, true).slideToggle();
+      event.preventDefault();
+    });
+
+    if (promotionMessage.find('div').length > 2) {
+      promotionMessage.append('<div><a href="javascript:;" class="showMore"></a></div>');
+    }
+
+    promotionTags.slice(0, 3).addClass('shown');
+    promotionTags.not('.shown').hide();
+
+    $('.promotion-message .showMore').on('click', function() {
+      promotionTags.not('.shown').toggle(100);
+      $(this).toggleClass('showLess');
+    });
+  });
+</script>
+<section class="faq-container">
+
+  <div class="faq-title">
+    <img
+      class="page-image"
+      src="{{ section.settings.image | image_url: width: 1500 }}"
+      alt=""
+      height="{{ section.settings.image.height }}"
+      width="{{ section.settings.image.width }}"
+      loading="lazy">
+    <h2 class="page-title">
+      {%- if section.settings.page_title != blank -%}
+        {{ section.settings.page_title | escape }}
+      {%- endif -%}
+    </h2>
+
+  </div>
+  <div class="faq-content">
+    <div class="content-container">
+      <div class="acc">
+        {%- for block in section.blocks -%}
+          <div class="acc__card content-item">
+            <div class="acc__title">
+              {{ block.settings.title }}</div>
+            <div class="acc__panel" style="overflow: hidden; display: none;">
+              <p class="description">
+                {{ block.settings.content }}
+              </p>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+</section>
+{% schema %}
+  {
+    "name": "FAQ",
+    "settings": [
+      {
+        "id": "page_title",
+        "type": "text",
+        "label": "Page Title"
+      }, {
+        "id": "image",
+        "type": "image_picker",
+        "label": "icon"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "list",
+        "name": "FAQ list",
+        "settings": [
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          }, {
+            "id": "content",
+            "type": "html",
+            "label": "Content"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "FAQ section",
+        "settings": {},
+        "blocks": [
+          {
+            "type": "list"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,34 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "about_us_LYVmnm": {
+      "type": "about-us",
+      "settings": {
+        "name_page": "About Us",
+        "title": "Well, we're proud to deliver coffee culture in the new wave",
+        "message_title": "We just love coffee",
+        "message_description": "At Best Bean Best Cup, we believe coffee is a magical thing. It can initiate a conversation, it has no boundaries, it can connect cultures and lifestyles, and we believe that only the best and freshest beans can bring you the best cup of coffee.",
+        "target_title_1": "People",
+        "target_description_1": "We value all of the people involved with our efforts, from the farmers, to the baristas, to the customers.",
+        "target_title_2": "Work",
+        "target_description_2": "We value all of the hard work. It takes to do something great, and to make changes.",
+        "target_title_3": "Change",
+        "target_description_3": "We value change. Change is what we seek. Change is inevitable, and we'll be the first on the other side of it.",
+        "target_bottom_subtitle": "",
+        "target_bottom_title": "It runs in the family",
+        "target_bottom_description": "At Best Bean Best Cup, coffee isn't just a drink; it's a cherished family legacy. With roots in a Vietnamese coffee-farmer family background, our passion for coffee runs deep in our veins."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "about_us_LYVmnm"
+  ]
+}

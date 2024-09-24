@@ -1,0 +1,66 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "privacy_policy_WCyjgK": {
+      "type": "privacy-policy",
+      "blocks": {
+        "list_6CYKxX": {
+          "type": "list",
+          "settings": {
+            "title": "SECTION 1 - WHAT DO WE DO WITH YOUR INFORMATION?",
+            "content": "When you purchase something from our store, as part of the buying and selling process, we collect the personal information you give us such as your name, address and email address.\nWhen you browse our store, we also automatically receive your computer’s internet protocol (IP) address in order to provide us with information that helps us learn about your browser and operating system.\nEmail marketing (if applicable): With your permission, we may send you emails about our store, new products and other updates."
+          }
+        },
+        "list_gL9cEg": {
+          "type": "list",
+          "settings": {
+            "title": "SECTION 2 - CONSENT",
+            "content": "How do you get my consent?When you provide us with personal information to complete a transaction, verify your credit card, place an order, arrange for a delivery or return a purchase, we imply that you consent to our collecting it and using it for that specific reason only.\nIf we ask for your personal information for a secondary reason, like marketing, we will either ask you directly for your expressed consent, or provide you with an opportunity to say no.\n\nHow do I withdraw my consent?\nIf after you opt-in, you change your mind, you may withdraw your consent for us to contact you, for the continued collection, use or disclosure of your information, at anytime, by using our Contact Us page and leaving us a short message."
+          }
+        },
+        "list_QJntke": {
+          "type": "list",
+          "settings": {
+            "title": "SECTION 3 - DISCLOSURE",
+            "content": "We may disclose your personal information if we are required by law to do so or if you violate our Terms of Service."
+          }
+        },
+        "list_CUJLrG": {
+          "type": "list",
+          "settings": {
+            "title": "SECTION 4 - SHOPIFY",
+            "content": "Our store is hosted on Shopify Inc. They provide us with the online e-commerce platform that allows us to sell our products and services to you.\nYour data is stored through Shopify’s data storage, databases and the general Shopify application. They store your data on a secure server behind a firewall.\n\nPayment:\nIf you choose a direct payment gateway to complete your purchase, then Shopify stores your credit card data. It is encrypted through the Payment Card Industry Data Security Standard (PCI-DSS). Your purchase transaction data is stored only as long as is necessary to complete your purchase transaction. After that is complete, your purchase transaction information is deleted.\nAll direct payment gateways adhere to the standards set by PCI-DSS as managed by the PCI Security Standards Council, which is a joint effort of brands like Visa, MasterCard, American Express and Discover.\nPCI-DSS requirements help ensure the secure handling of credit card information by our store and its service providers.For more insight, you may also want to read Shopify’s Terms of Service (https:\/\/www.shopify.com\/legal\/terms) or Privacy Statement (https:\/\/www.shopify.com\/legal\/privacy)."
+          }
+        },
+        "list_he8fDk": {
+          "type": "list",
+          "settings": {
+            "title": "SECTION 5 - THIRD-PARTY SERVICES",
+            "content": "In general, the third-party providers used by us will only collect, use and disclose your information to the extent necessary to allow them to perform the services they provide to us.\nHowever, certain third-party service providers, such as payment gateways and other payment transaction processors, have their own privacy policies in respect to the information we are required to provide to them for your purchase-related transactions.\nFor these providers, we recommend that you read their privacy policies so you can understand the manner in which your personal information will be handled by these providers.\nIn particular, remember that certain providers may be located in or have facilities that are located a different jurisdiction than either you or us. So if you elect to proceed with a transaction that involves the services of a third-party service provider, then your information may become subject to the laws of the jurisdiction(s) in which that service provider or its facilities are located.\nAs an example, if you are located in Canada and your transaction is processed by a payment gateway located in the United States, then your personal information used in completing that transaction may be subject to disclosure under United States legislation, including the Patriot Act.\nOnce you leave our store’s website or are redirected to a third-party website or application, you are no longer governed by this Privacy Policy or our website’s Terms of Service.\n\nLinks\nWhen you click on links on our store, they may direct you away from our site. We are not responsible for the privacy practices of other sites and encourage you to read their privacy statements.\n\nGoogle analytics:\nOur store uses Google Analytics to help us learn about who visits our site and what pages are being looked at.\n\nFacebook Pixel\nOur store uses Facebook Pixel to help us learn about who visits our site and how we can best serve them"
+          }
+        }
+      },
+      "block_order": [
+        "list_6CYKxX",
+        "list_gL9cEg",
+        "list_QJntke",
+        "list_CUJLrG",
+        "list_he8fDk"
+      ],
+      "settings": {
+        "page_title": "Privacy policy"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "privacy_policy_WCyjgK"
+  ]
+}

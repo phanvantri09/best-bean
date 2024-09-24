@@ -1,0 +1,121 @@
+{{ 'image-banner-custom.css' | asset_url | stylesheet_tag }}
+
+<div class="image-banner__section">
+  <video
+    class="image-banner desktop-image"
+    loop
+    autoplay
+    muted
+    playsinline
+    id="desVideo">>
+    <source src="{{'herobanner-desktop.mp4' |  asset_url}}" type="video/mp4">
+  {% comment %} <source src="{{'herobanner-desktop.mp4' |  asset_url}}" type="video/ogg"> {% endcomment %}
+  </video>
+  <video
+    class="image-banner mobile-image"
+    loop
+    autoplay
+    muted
+    playsinline
+    id="mobVideo">
+    <source src="{{'herobanner-mobile.mp4' |  asset_url}}"
+      type="video/mp4">
+  {% comment %} <source src="{{'herobanner-mobile.mp4' |  asset_url}}" type="video/ogg"> {% endcomment %}
+  </video>
+  <div class="banner-title">
+    {% comment %} <p class="sub-title">
+    Elevate Coffee
+    </p> {% endcomment %}
+    <h2 class="title">
+      <span class="des">{{ section.settings.banner_title }}
+      </span>
+      <span class="mb">{{ section.settings.banner_title_m }}
+      </span>
+    </h2>
+  </div>
+  <div class="marquee-container banner-footer">
+    <div class="marquee">
+      <div
+        class="marquee-child">
+        <img
+          class="icon-space"
+          src="{{'icon-space.svg' |  asset_url}}"
+          width="100%"
+          height="100%"
+          alt="">
+        <h1>
+          {{ section.settings.mequee_title }}
+        </h1>
+        <img
+          class="icon-space"
+          src="{{'icon-space.svg' |  asset_url}}"
+          width="100%"
+          height="100%"
+          alt="">
+        <h1>
+          {{ section.settings.mequee_title1 }}
+
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.getElementById('desVideo').addEventListener('loadeddata', function() {
+    if (this.autoplay) {
+      this.play();
+    }
+  });
+</script>
+{% schema %}
+  {
+    "name": "t:sections.image-banner-custom.name",
+    "tag": "section",
+    "class": "section section-image-custom-sticky",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "t:sections.image-banner-custom.settings.image_1.label"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_sub",
+        "label": "mobile banner"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_2",
+        "label": "t:sections.image-banner-custom.settings.image_2.label"
+      },
+      {
+        "type": "text",
+        "id": "banner_title",
+        "label": "Banner title",
+        "default": "Your Perfect Cup Awaits"
+      }, {
+        "type": "text",
+        "id": "banner_title_m",
+        "label": "Banner title moble",
+        "default": "Your Perfect<br>Cup Awaits"
+      }, {
+        "type": "text",
+        "id": "mequee_title",
+        "label": "Mequee title",
+        "default": "Sustainably sourced coffee beans"
+
+      }, {
+        "type": "text",
+        "id": "mequee_title1",
+        "label": "Mequee title1",
+        "default": "Expertly roasted to perfection"
+
+      }
+    ],
+    "presets": [
+      {
+        "name": "t:sections.image-banner-custom.presets.name"
+      }
+    ]
+  }
+{% endschema %}

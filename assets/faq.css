@@ -1,0 +1,146 @@
+.faq-header{
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding-top: 64px;
+}
+.faq-header .page-title{
+     color: #151515;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 80px;
+    text-transform: uppercase;
+    margin:0;
+}
+.faq-header .page-image{
+    max-width: 480px;
+    max-height: 120px;
+}
+.faq-container{
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+    padding-top: 64px;
+
+}
+.faq-container .faq-title{
+    display: flex;
+    align-items: center;
+    gap:10px;
+    padding: 8px;
+    padding-right: 20px;
+    border-radius: 100px;
+    border:1px solid #DBDBDB;
+    width: fit-content;
+    margin-bottom: 24px;
+}
+.faq-container .faq-title .page-image{
+    max-width: 40px;
+    height: 40px;
+}
+.faq-container .faq-title  .page-title{
+  color: #151515;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 23.52px;
+    margin:0;
+}
+.faq-container .content-container .acc .acc__card{
+    padding: 24px 40px;
+    background: #FFFFFF;
+    border-radius: 16px;
+}
+.faq-container .content-container .acc {
+    display: flex;
+    flex-direction: column;
+    gap:16px;
+}
+.faq-container .content-container .acc .acc__card .acc__title{ 
+    color: #000000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 29.4px;
+    margin:0;
+    position: relative;
+}
+.faq-container .content-container .acc .acc__card .acc__title::before{ 
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: 0;
+    top:4px;
+    background-image:url("plus.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.faq-container .content-container .acc .acc__card .acc__title.active::before{ 
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: 0;
+    top:4px;
+    background-image:url("minus.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.faq-container .content-container .acc .acc__card .acc__panel .description{
+    color: #4F4F4F;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 23.52px;
+    margin:0;
+    margin-top: 16px;
+}
+@media screen and (max-width: 526px){
+    .faq-container .content-container .acc .acc__card .acc__title {
+       padding-right: 18px;
+    }
+}
+@media screen and (max-width: 1200px){
+    .faq-header{
+        padding: 32px 16px 0;
+        justify-content: space-between;
+    }
+    .faq-header .page-title{
+        font-size: 32px;
+        line-height: normal;
+    }
+    .faq-header .page-image{
+        max-width: 40%;
+        object-fit: contain;
+    }
+    .faq-container{
+        padding: 32px 16px 0;
+    }
+}
+@media screen and (max-width: 768px){
+    .faq-header{
+        padding: 32px 16px 0;
+    }
+    .faq-header .page-title{
+        font-size: 20px;
+        line-height: normal;
+    }
+    .faq-header .page-image{
+        max-width: 40%;
+        object-fit: contain;
+        height: unset;
+    }
+    .faq-container{
+        padding: 32px 16px 0;
+    }
+    .faq-container .content-container .acc .acc__card{
+        padding: 16px 24px;
+    }
+}
+#MainContent >div:last-child{
+    padding-bottom: 50px;
+}

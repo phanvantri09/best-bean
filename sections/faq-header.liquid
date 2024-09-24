@@ -1,0 +1,43 @@
+{{ 'faq.css' | asset_url | stylesheet_tag }}
+
+<section class="faq-header">
+  <h2 class="page-title">
+    {%- if section.settings.page_title != blank -%}
+      {{ section.settings.page_title | escape }}
+    {%- endif -%}
+  </h2>
+  <img
+    class="page-image"
+    src="{{ section.settings.page_image | image_url: width: 1500 }}"
+    alt=""
+    height="{{ section.settings.page_image.height }}"
+    width="{{ section.settings.page_image.width }}"
+    loading="lazy">
+
+</section>
+<div class="fap-link faq-header" style="padding-top:0">
+  <p>Explore the responses to our frequently asked questions listed below. Should you require further assistance, please don't hesitate to contact our administrative experts
+    <a href="/pages/contact-us">here</a>.</p>
+</div>
+{% schema %}
+  {
+    "name": "FAQ Header",
+    "settings": [
+      {
+        "id": "page_title",
+        "type": "text",
+        "label": "Page Title"
+      }, {
+        "id": "page_image",
+        "type": "image_picker",
+        "label": "Page Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "FAQ Header",
+        "settings": {}
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,57 @@
+.contact-container{
+    display: flex;;
+}
+.contact-container .contact-info{
+    width: 50%;
+}
+.contact-container .contact-image{
+    width: 50%;
+}
+.contact-container .contact-info .form-title{
+   color: #151515;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 80px;
+    text-transform: uppercase;
+    margin:0;
+}
+.contact-container .contact-info .form-description{
+  color: #151515;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 23.52px;
+    margin:0;
+    margin-bottom: 24px;
+}
+.contact-content{
+    max-width: 570px;
+    margin: 64px auto 0;
+}
+#MainContent{
+    z-index: 0;
+}
+@media screen and (max-width: 750px) {
+   section.contact-container{
+    flex-direction: column;
+   }
+   section.contact-container .contact-info{
+    padding: 12px 12px 0;
+   }
+   section.contact-container .contact-image{
+        display: flex;
+   }
+   section.contact-container .contact-info, section.contact-container .contact-image{
+    width:100%
+   }
+   section.contact-container  h2.form-title {
+    font-size: 36px !important;
+   }
+   section.contact-container  label, section.contact-container  .input__textarea::placeholder, section.contact-container  input {
+    font-size:14px !important
+   }
+   section.contact-container .contact-content {
+        margin: 36px auto 36px;
+    }
+  }

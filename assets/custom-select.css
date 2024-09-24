@@ -1,0 +1,90 @@
+
+
+.select-hidden {
+  display: none;
+  visibility: hidden;
+  padding-right: 10px;
+}
+.select {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  font-size: 16px;
+  /* color: #fff;
+  height: 24px; */
+  min-width: 115px;
+  width: fit-content;
+}
+
+.select-styled {
+  background-color: transparent;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  color: rgba(21, 21, 21, 1);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 23.52px;
+  padding-right: 20px;
+
+}
+.select-styled:after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 2px;
+  right: 0px;
+  background: url("chevron-down.svg");
+  background-size: cover;
+}
+.select-styled:hover {
+  background-color: transparent;
+}
+.select-styled:active, .select-styled.active {
+  background-color: transparent;
+}
+.select-styled:active:after, .select-styled.active:after {
+    transform: rotate(180deg);
+}
+
+.select-options {
+  display: none;
+  position: absolute;
+  top:calc(100% + 18px) ;
+  right: 0;
+  z-index: 999;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: #fff;
+  padding: 16px;
+    width: fit-content;
+    border: 1px solid rgba(0, 0, 0, 1);
+    min-width: 200px;
+}
+.select-options li {
+  margin: 0;
+  padding: 12px 0;
+  text-indent: 15px;
+  border-top: 1px solid rgba(202, 199, 199, 1);
+  -moz-transition: all 0.15s ease-in;
+  -o-transition: all 0.15s ease-in;
+  -webkit-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
+  color: rgba(21, 21, 21, 1);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 23.52px;
+}
+.select-options li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.select-options li:last-child {
+  padding-bottom: 0;
+}
+.select-options li[rel="hide"] {
+  display: none;
+}

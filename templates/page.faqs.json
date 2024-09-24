@@ -1,0 +1,264 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "faq_header_qGT64g": {
+      "type": "faq-header",
+      "settings": {
+        "page_title": "Frequently Asked Questions",
+        "page_image": "shopify:\/\/shop_images\/image-header.png"
+      }
+    },
+    "faq_frbpNA": {
+      "type": "faq",
+      "blocks": {
+        "list_yNDfgU": {
+          "type": "list",
+          "settings": {
+            "title": "What is your return policy?",
+            "content": "For your convenience, we accept returns within 30 days of purchase. To start a return, kindly visit our <a href=\"https:\/\/bestbeanbestcup.com.au\/policies\/refund-policy\">Refund Policy<\/a> and follow the provided instructions. Your satisfaction is our top priority."
+          }
+        },
+        "list_8bpLNg": {
+          "type": "list",
+          "settings": {
+            "title": "Can I modify or cancel my order?",
+            "content": "For any modifications or cancellations to your order, please reach out to our <a href=\"https:\/\/bestbeanbestcup.com.au\/pages\/contact-us\">customer service team<\/a> promptly. We'll do our best to accommodate your request."
+          }
+        }
+      },
+      "block_order": [
+        "list_yNDfgU",
+        "list_8bpLNg"
+      ],
+      "custom_css": [],
+      "settings": {
+        "page_title": "GENERAL",
+        "image": "shopify:\/\/shop_images\/icon-1.png"
+      }
+    },
+    "faq_AmiGFD": {
+      "type": "faq",
+      "blocks": {
+        "list_MTD3Ga": {
+          "type": "list",
+          "settings": {
+            "title": "When will my order be dispatched?",
+            "content": "Our aim is to dispatch orders promptly within 2 business days. Please kindly allow extra time during peak sales and any public holiday periods."
+          }
+        },
+        "list_aUeVnn": {
+          "type": "list",
+          "settings": {
+            "title": "How do I know if my order has been shipped?",
+            "content": "Once your order has been dispatched, you will receive a tracking number via email, allowing you to\ntrack your order through the carrier's website.<br><br>\nKindly note that the tracking details are provided by the courier service, and we are unable to offer additional information beyond what is provided in the email.<br><br>\nShould you encounter difficulty locating your tracking information, we suggest checking your spam\nfolder in your email account."
+          }
+        },
+        "list_pkbEXk": {
+          "type": "list",
+          "settings": {
+            "title": "How long will my order take to arrive?",
+            "content": "Our aim is to dispatch orders promptly, typically within one business day. However, during peak sales periods, there may be slight delays in processing.<br><br>\nOnce dispatched, please allow approximately 3-5 business days for Express Shipping and approximately 5-8 business days for Standard Shipping within Australia. <br><br>\nDeliveries to regional or rural areas may require additional time.<br><br>\nIf you have any questions, please <a href=\"https:\/\/bestbeanbestcup.com.au\/pages\/contact-us\">contact us<\/a>, our team are on hand to help."
+          }
+        },
+        "list_npfERi": {
+          "type": "list",
+          "settings": {
+            "title": "How much does shipping cost?",
+            "content": "Free standard shipping for orders over $99 ($199 for NT &amp;WA customers).<br><br>\nStandard shipping rate of $12 for orders under $99.<br><br>\nExpress shipping rate of $15 available."
+          }
+        },
+        "list_eRrA4E": {
+          "type": "list",
+          "settings": {
+            "title": "Which courier\/postal service will my order be sent with?",
+            "content": "For interstate orders, we use a combination of services, including Australia Post and reputable couriers, to ensure optimal shipping rates and reliable delivery."
+          }
+        }
+      },
+      "block_order": [
+        "list_MTD3Ga",
+        "list_aUeVnn",
+        "list_pkbEXk",
+        "list_npfERi",
+        "list_eRrA4E"
+      ],
+      "custom_css": [
+        "p a[href] {color: #0056fd !important;}"
+      ],
+      "settings": {
+        "page_title": "SHIPPING",
+        "image": "shopify:\/\/shop_images\/icon-2.png"
+      }
+    },
+    "faq_jXEhzp": {
+      "type": "faq",
+      "blocks": {
+        "list_qw44C4": {
+          "type": "list",
+          "settings": {
+            "title": "How do I use a discount code?",
+            "content": "To redeem your discount code, simply input it at the checkout stage, and the discount will be automatically applied to your order. If you encounter any issues or if your code doesn't seem to work as expected, please <a href=\"https:\/\/bestbeanbestcup.com.au\/pages\/contact-us\">contact us<\/a> at info@bestbeanbestcup.com.au."
+          }
+        },
+        "list_rTraxb": {
+          "type": "list",
+          "settings": {
+            "title": "How can I apply to be a Best Bean Best Cup wholesale partner?",
+            "content": "Should you be interested in a wholesale supply of coffee from us, please <a href=\"https:\/\/bestbeanbestcup.com.au\/pages\/new-wholesale\">contact us<\/a> at accounts@bestbeanbestcup.com.au. We welcome applications from all eligible businesses all around Australia and we look forward to partnering with you."
+          }
+        }
+      },
+      "block_order": [
+        "list_qw44C4",
+        "list_rTraxb"
+      ],
+      "custom_css": [
+        "p a[href] {color: #0056fd !important;}"
+      ],
+      "settings": {
+        "page_title": "ACCOUNT",
+        "image": "shopify:\/\/shop_images\/icon-3.png"
+      }
+    },
+    "faq_UkqRw7": {
+      "type": "faq",
+      "blocks": {
+        "list_t6kccQ": {
+          "type": "list",
+          "settings": {
+            "title": "What's the top-selling blend?",
+            "content": "<p><strong><a href=\"https:\/\/bestbeanbestcup.com.au\/pages\/new-wholesale\">No.23 Smooth<\/a><\/strong> is our signature house blend, loved by many for its balanced flavour profile and rich aroma.<\/p>"
+          }
+        },
+        "list_G8M4Jq": {
+          "type": "list",
+          "settings": {
+            "title": "I don’t have a grinder. Can you grind my beans for me?",
+            "content": "We accommodate your coffee bean preferences to perfection! Whether you prefer whole beans or\npre-ground coffee, you can specify your choice before adding them to your cart."
+          }
+        },
+        "list_LYfLwV": {
+          "type": "list",
+          "settings": {
+            "title": "How many coffees will one 250g bag make?",
+            "content": "If using an espresso machine, you can make approximately 12 coffees from a 250g bag. If you are making coffee via a brew method, then the coffee quantity will depend on what type of brew method you are using and the size of your grind."
+          }
+        },
+        "list_RmW3QQ": {
+          "type": "list",
+          "settings": {
+            "title": "How long do coffee beans stay fresh?",
+            "content": "Coffee beans have a long shelf life if stored properly. However, the fresher the beans, the better the\nquality of the coffee will be. It's best to use your beans within 3-4 weeks of purchase for peak taste.\nFollowing this period, they may start to lose some of their flavour.<br><br>\nIf they lose aroma or flavour, it's time to replace them. Beans stored in humid or warm conditions\nshould be discarded, as they may spoil and lose their quality."
+          }
+        },
+        "list_CJKNqc": {
+          "type": "list",
+          "settings": {
+            "title": "How should I store my coffee beans once the bag is opened?",
+            "content": "Proper storage is essential to preserve the freshness and flavour of your coffee. We recommend following these guidelines:\n<li>Keep it airtight - prevent exposure to oxygen by ensuring your coffee bag is properly sealed after it has been opened.<\/li>\n<li>Avoid light, heat, and moisture: Coffee is sensitive to light, heat, and moisture, so it's best to store it in a cool, dark, and dry place. Avoid placing your coffee near the stove, oven, or other sources of heat.<\/li>\n<li>Grind just before brewing: For optimal freshness, grind your coffee beans just before brewing. This ensures maximum flavour extraction and helps to maintain the coffee's aroma\nand taste.<\/li>"
+          }
+        },
+        "list_qzGUFQ": {
+          "type": "list",
+          "settings": {
+            "title": "What’s the difference between filter and espresso roast?",
+            "content": "<p><strong>Filter &amp; Espresso<\/strong> represent distinct coffee brewing methods.<\/p> \nEspresso and milk-based drinks are created using an espresso machine, while filter coffees involve various brewing techniques. Our coffee roasting process is tailored to these methods: filter, espresso,\nand milk-based. <br><br>\nFilter roasts undergo a lighter, shorter roast, yielding delicate flavours. In contrast, our espresso and\nmilk-based coffees are roasted longer for enhanced richness and complexity."
+          }
+        },
+        "list_kGJpG3": {
+          "type": "list",
+          "settings": {
+            "title": "What is a single origin coffee?",
+            "content": "<p><strong>Single origin<\/strong> refers to coffee beans sourced from a specific geographic area, such as a single farm, estate, mill, or cooperative within that region. This designation underscores the distinctive characteristics of the coffee, including its flavour profile, aroma, and growing conditions, all influenced by the unique terroir of the origin. <\/p>\nYou can shop our new single origin coffee <a href=\"https:\/\/bestbeanbestcup.com.au\/collections\/coffee-beans?sort_by=manual&amp;filter.v.price.gte=&amp;filter.v.price.lte=&amp;filter.p.tag=single-origin\">here<\/a>"
+          }
+        },
+        "list_QLCUhJ": {
+          "type": "list",
+          "settings": {
+            "title": "How often do you rotate your single origin coffee?",
+            "content": "We rotate our single origin coffee collection every fortnight, ensuring a fresh and distinctive experience with each cup you enjoy.<br><br>\nYou can shop our new single origin coffee <a href=\"https:\/\/bestbeanbestcup.com.au\/collections\/coffee-beans?sort_by=manual&amp;filter.v.price.gte=&amp;filter.v.price.lte=&amp;filter.p.tag=single-origin\">here<\/a>"
+          }
+        },
+        "list_77mrgY": {
+          "type": "list",
+          "settings": {
+            "title": "Varietal, what does this mean?",
+            "content": "A coffee varietal represents a unique type of coffee plant. The specific growing location and conditions play a vital role in shaping the coffee cherry’s flavour, making it a key factor in the taste that awaits in your Best Bean Best Cup cup."
+          }
+        }
+      },
+      "block_order": [
+        "list_t6kccQ",
+        "list_G8M4Jq",
+        "list_LYfLwV",
+        "list_RmW3QQ",
+        "list_CJKNqc",
+        "list_qzGUFQ",
+        "list_kGJpG3",
+        "list_QLCUhJ",
+        "list_77mrgY"
+      ],
+      "custom_css": [
+        "p a[href] {color: #0056fd !important;}"
+      ],
+      "settings": {
+        "page_title": "OUR BEANS",
+        "image": "shopify:\/\/shop_images\/4.png"
+      }
+    },
+    "faq_TgJEeG": {
+      "type": "faq",
+      "blocks": {
+        "list_Uffq4q": {
+          "type": "list",
+          "settings": {
+            "title": "Where are you located?",
+            "content": "Feel welcome to visit us at Unit 62\/2 Thomsons Road, Keilor Park VIC 3042! We'd love to meet you,\nso don't hesitate to stop by and say hello!"
+          }
+        },
+        "list_cQkBfh": {
+          "type": "list",
+          "settings": {
+            "title": "What are your trading hours?",
+            "content": "Monday to Friday: 6 am – 3 pm <br>\nSaturday: 7:30 am – 1 pm <br>\nSunday: Closed"
+          }
+        },
+        "list_XxQfGz": {
+          "type": "list",
+          "settings": {
+            "title": "Do you have food options?",
+            "content": "Absolutely! We offer a various range of food options, including pastries, cakes, sweets, sandwiches, toasties\nand more sourced from the best Melbourne suppliers. Your support for us also extends to supporting\nother local businesses."
+          }
+        }
+      },
+      "block_order": [
+        "list_Uffq4q",
+        "list_cQkBfh",
+        "list_XxQfGz"
+      ],
+      "custom_css": [
+        "p a[href] {color: #0056fd !important;}"
+      ],
+      "settings": {
+        "page_title": "OUR CAFÉ",
+        "image": "shopify:\/\/shop_images\/5.png"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq_header_qGT64g",
+    "faq_frbpNA",
+    "faq_AmiGFD",
+    "faq_jXEhzp",
+    "faq_UkqRw7",
+    "faq_TgJEeG"
+  ]
+}

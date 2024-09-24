@@ -1,0 +1,57 @@
+{{ 'partner-section.css' | asset_url | stylesheet_tag }}
+
+<div class="partner-section partner-section-child">
+  <div class="partner-header">
+    <h2 class="header-title">
+      Where to find BBBc
+    </h2>
+    <p class="header-description">
+      Located around Victoria are different cafes that you can support and drink our beans
+    </p>
+  </div>
+  <div class="partner-container">
+    <div class="partner-top"> 
+      <img class="image-product" src="{{ 'Partner-Desktop.svg' | asset_url}}" alt="" loading="lazy" class="motion-reduce" />
+      <img class="image-product-mobile" src="{{ 'Partner-Mobile.png' | asset_url}}" alt="" loading="lazy" class="motion-reduce" />
+
+      {% comment %} <div class="partner-item">
+        <img class="image-product" src="{{ 'baba.svg' | asset_url}}" alt="" loading="lazy" class="motion-reduce" />
+      </div>
+      <div class="partner-item">
+        <img class="image-product" src="{{ 'tami.svg' | asset_url}}" alt="" loading="lazy" class="motion-reduce" />
+      </div>
+      <div class="partner-item">
+        <img class="image-product" src="{{ 'cafe.svg' | asset_url}}" alt="" loading="lazy" class="motion-reduce" /> {% endcomment %}
+      </div>
+      </div>
+      {% comment %} <div class="partner-top">
+      <div class="partner-item">
+        <img class="image-product" src="{{ 'vakna.svg' | asset_url}}" alt="" loading="lazy" class="motion-reduce" />
+      </div>
+      <div class="partner-item">
+        <img class="image-product" src="{{ 'poet.svg' | asset_url}}" alt="" loading="lazy" class="motion-reduce" />
+      </div>
+      <div class="partner-item">
+        <img class="image-product" src="{{ 'bcuz.svg' | asset_url}}" alt="" loading="lazy" class="motion-reduce" />
+      </div>
+      <div class="partner-item">
+        <img class="image-product" src="{{ 'vietboy.svg' | asset_url}}" alt="" loading="lazy" class="motion-reduce" />
+      </div>
+      </div> {% endcomment %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.partner-section.name",
+  "tag": "section",
+  "class": "section partner-section",
+  "settings": [
+  ],
+  "presets": [
+    {
+      "name": "t:sections.partner-section.presets.name"
+    }
+  ]
+}
+{% endschema %}

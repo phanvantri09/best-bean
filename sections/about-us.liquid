@@ -1,0 +1,195 @@
+{{ 'about-us.css' | asset_url | stylesheet_tag }}
+<div class="about-us-container">
+  <div class="section-title">
+    <p class="subtitle">
+      {{section.settings.name_page}}
+    </p>
+    <h5 class="title">
+      {{section.settings.title}}
+    </h5>
+  </div>
+  <div class="our-passion">
+    <div class="image-banner__section">
+      <img
+        class="before-image"
+        src="{{'bg-banner.png'| asset_url}}"
+        alt="">
+      <div class="video-block">
+        <video
+          class="video-banner"
+          loop
+          autoplay
+          muted
+          playsinline>
+          <source src="{{'herobanner-aboutus.mp4' |  asset_url}}" type="video/mp4">
+          <source src="{{'herobanner-aboutus.mp4' |  asset_url}}" type="video/ogg">
+        </video>
+      </div>
+      <img
+        class="after-image"
+        src="{{'bg-banner.png'| asset_url}}"
+        alt="">
+    </div>
+    <div class="message">
+      <p class="title">
+      {{section.settings.message_title}}
+      </p>
+      <p class="description">
+        {{section.settings.message_description}}
+      </p>
+    </div>
+  </div>
+  <div class="our-target">
+    <div class="target-list">
+      <div class="target-item">
+        <img src="{{'people-target.png' |  asset_url}}" alt="">
+        <div class="target-info">
+          <p class="title">
+            {{section.settings.target_title_1}}
+          </p>
+          <p class="description">
+            {{section.settings.target_description_1}}
+          </p>
+        </div>
+      </div>
+      <div class="target-item">
+        <img src="{{'work-target.png' |  asset_url}}" alt="">
+        <div class="target-info">
+          <p class="title">
+            {{section.settings.target_title_2}}
+          </p>
+          <p class="description">
+            {{section.settings.target_description_2}}
+          </p>
+        </div>
+      </div>
+      <div class="target-item">
+        <img src="{{'change-target.png' |  asset_url}}" alt="">
+        <div class="target-info">
+          <p class="title">
+                        {{section.settings.target_title_3}}
+          </p>
+          <p class="description">
+            {{section.settings.target_description_3}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="target-bottom">
+      <div class="target-bottom-left">
+        <div class="title-block">
+          <p class="subtitle">
+            {{section.settings.target_bottom_subtitle}}
+          </p>
+          <p class="title">
+            {{section.settings.target_bottom_title}}
+          </p>
+        </div>
+
+        <p class="description">
+            {{section.settings.target_bottom_description}}
+        </p>
+      </div>
+      <div class="target-bottom-right">
+        <img
+          src="{{'target-bottom-right.svg' |  asset_url}}"
+          width="100%"
+          height="100%"
+          alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "About Us",
+    "tag": "section",
+    "class": "section section-about-us",
+    "settings": [
+      {
+        "type": "text",
+        "id": "name_page",
+        "label": "Name page",
+        "default":"About us"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "title",
+        "label": "Title",
+        "default":" Well, we're proud to deliver coffee culture in the new wave"
+      },
+      {
+        "type": "text",
+        "id": "message_title",
+        "label": "Message title",
+        "default":" We just love coffee"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "message_description",
+        "label": "Message description",
+        "default":"  At Best Bean Best Cup, we believe coffee is a magical thing. It can initiate a conversation, it has no boundaries, it can connect cultures and lifestyles, and we believe that only the best and freshest beans can bring you the best cup of coffee."
+      },
+      {
+        "type": "text",
+        "id": "target_title_1",
+        "label": "Target title 1",
+        "default":"People"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "target_description_1",
+        "label": "Target description 1",
+        "default":"We value all of the people involved with our efforts, from the farmers, to the baristas, to the customers."
+      },
+      {
+        "type": "text",
+        "id": "target_title_2",
+        "label": "Target title 2",
+        "default":"Work"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "target_description_2",
+        "label": "Target description 2",
+        "default":" At BBBC, we value all of the hard work. It takes to do something great, and to make changes."
+      },
+      {
+        "type": "text",
+        "id": "target_title_3",
+        "label": "Target title 3",
+        "default":"Change"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "target_description_3",
+        "label": "Target description 3",
+        "default":" We value change. Change is what we seek. Change is inevitable, and we'll be the first on the other side of it."
+      },
+      {
+        "type": "text",
+        "id": "target_bottom_subtitle",
+        "label": "Target bottom subtitle",
+        "default":"Coffee in our blood"
+      },
+      {
+        "type": "text",
+        "id": "target_bottom_title",
+        "label": "Target bottom title",
+        "default":" It runs in the family"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "target_bottom_description",
+        "label": "Target bottom description",
+        "default":"At Best Bean Best Cup, coffee isn't just a drink; it's a cherished family legacy. With roots in a Vietnamese coffee-farmer family background, our passion for coffee runs deep in our veins."
+      }
+    ],
+    "presets": [
+      {
+        "name": "About Us"
+      }
+    ]
+  }
+{% endschema %}

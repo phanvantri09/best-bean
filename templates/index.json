@@ -1,0 +1,84 @@
+{
+  "sections": {
+    "image_banner_custom_ENB7h9": {
+      "type": "image-banner-custom",
+      "settings": {
+        "image_1": "shopify:\/\/shop_images\/home-banner.png",
+        "image_sub": "shopify:\/\/shop_images\/banner-mobile.png",
+        "image_2": "shopify:\/\/shop_images\/banner-footer.png",
+        "banner_title": "Your Perfect Cup Awaits",
+        "banner_title_m": "Your Perfect<br>Cup Awaits",
+        "mequee_title": "Sustainably sourced coffee beans",
+        "mequee_title1": "Expertly roasted to perfection"
+      }
+    },
+    "main_product_section_43xXJK": {
+      "type": "main-product-section",
+      "settings": {
+        "product_main": "bbbc-coffee-no72"
+      }
+    },
+    "product_section_VjzLqc": {
+      "type": "product-section",
+      "settings": {
+        "product_main": "bbbc-coffee-no23",
+        "is_reverse": false,
+        "bg_color": "",
+        "link_title": "https:\/\/bestbeanbestcup.com.au\/cdn\/shop\/t\/7\/assets\/title1.svg"
+      }
+    },
+    "product_section_MgA4KW": {
+      "type": "product-section",
+      "settings": {
+        "product_main": "bbbc-coffee-no21",
+        "is_reverse": true,
+        "bg_color": "#f38ea1",
+        "link_title": "https:\/\/bestbeanbestcup.com.au\/cdn\/shop\/t\/7\/assets\/title2.svg"
+      }
+    },
+    "product_section_nRHRhL": {
+      "type": "product-section",
+      "settings": {
+        "product_main": "bbbc-coffee-no29",
+        "is_reverse": false,
+        "bg_color": "#cccccc",
+        "link_title": "https:\/\/bestbeanbestcup.com.au\/cdn\/shop\/t\/7\/assets\/title3.svg"
+      }
+    },
+    "171108846205ebad2f": {
+      "type": "apps",
+      "blocks": {
+        "google_reviews_carousel_widget_block_r7ApyC": {
+          "type": "shopify:\/\/apps\/google-reviews\/blocks\/carousel-widget-block\/8b378e9e-c56d-47ce-a754-feca5e0caf59",
+          "settings": {
+            "themeId": "light",
+            "autoscroll": true,
+            "showRating": true,
+            "showReviewPhotos": true,
+            "writeReview": true,
+            "fixedReviewsHeight": false
+          }
+        }
+      },
+      "block_order": [
+        "google_reviews_carousel_widget_block_r7ApyC"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "partner_section_8tFqJh": {
+      "type": "partner-section",
+      "settings": {}
+    }
+  },
+  "order": [
+    "image_banner_custom_ENB7h9",
+    "main_product_section_43xXJK",
+    "product_section_VjzLqc",
+    "product_section_MgA4KW",
+    "product_section_nRHRhL",
+    "171108846205ebad2f",
+    "partner_section_8tFqJh"
+  ]
+}

@@ -1,0 +1,443 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}
+    px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}
+    px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}
+      px;
+      padding-bottom: {{ section.settings.padding_bottom }}
+      px;
+    }
+  }
+  .btn-sign-up {
+    margin-left: 12px;
+    color: #151515;
+    width: 140px;
+    height: 48px;
+    margin: 24px 0 0;
+    padding: 0;
+    border: 1px solid #000;
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+{%- endstyle -%}
+
+{% comment %} <input type="hidden" name="checkout_url" value="{{ 'prev_url' }}"> {% endcomment %}
+
+{% if customer %}
+<script>
+  setTimeout(function () {
+    window.location.href = '/';
+    return false;
+  }, 1);
+</script>
+{%- endif -%}
+<div class="customer login section-{{ section.id }}-padding">
+  <h1 id="recover" tabindex="-1">
+    {{ 'customer.recover_password.title' | t }}
+  </h1>
+  <div class="form-account-content">
+    <p>
+      {{ 'customer.recover_password.subtext' | t }}
+    </p>
+
+    {%- form 'recover_customer_password' -%}
+      {% assign recover_success = form.posted_successfully? %}
+      <div class="form-account">
+        <input
+          class="input__field"
+          type="email"
+          value=""
+          name="email"
+          id="RecoverEmail"
+          autocorrect="off"
+          autocapitalize="off"
+          autocomplete="email"
+          {% if form.errors %}
+            aria-invalid="true"
+            aria-describedby="RecoverEmail-email-error"
+            autofocus
+          {% endif %}
+          placeholder=""
+          required
+        >
+        <label for="RecoverEmail" class="input__label">
+          {{ 'customer.login_page.email' | t }}
+        </label>
+      </div>
+      
+      {%- if form.errors -%}
+        <small id="RecoverEmail-email-error" class="form__message">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            viewBox="0 0 13 13"
+          >
+            <circle
+              cx="6.5"
+              cy="6.50049"
+              r="5.5"
+              stroke="white"
+              stroke-width="2" />
+            <circle
+              cx="6.5"
+              cy="6.5"
+              r="5.5"
+              fill="#EB001B"
+              stroke="#EB001B"
+              stroke-width="0.7" />
+            <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white" />
+            <path
+              d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z"
+              fill="white"
+              stroke="#EB001B"
+              stroke-width="0.7">
+          </svg>
+          {{ form.errors.messages.form }}
+        </small>
+      {%- endif -%}
+
+      {% comment %}
+        <button>
+          {{ 'customer.login_page.submit' | t }}
+        </button>
+
+        <a href="#login">
+          {{ 'customer.login_page.cancel' | t }}
+        </a>
+      {% endcomment %}
+      <div class="btn-account">
+        <button class="btn-submit">
+          {{ 'customer.login_page.submit' | t }}
+        </button>
+        <button type="reset" class="btn-reset">
+          <a href="#">
+            {{ 'customer.login_page.cancel' | t }}
+          </a>
+        </button>
+      </div>
+    {%- endform -%}
+  </div>
+
+  <div class="header-form" id="login" tabindex="-1">
+    <h1>
+      {{ 'customer.login_page.title' | t }}
+    </h1>
+    {%- if section.settings.text != blank -%}
+      {{- section.settings.text -}}
+    {%- endif -%}
+  </div>
+  <div class="form-account-content">
+    {%- if recover_success == true -%}
+      <h3
+        class="form__message"
+        tabindex="-1"
+        autofocus
+      >
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          viewBox="0 0 13 13"
+        >
+          <path
+            d="M6.5 12.35C9.73087 12.35 12.35 9.73086 12.35 6.5C12.35 3.26913 9.73087 0.65 6.5 0.65C3.26913 0.65 0.65 3.26913 0.65 6.5C0.65 9.73086 3.26913 12.35 6.5 12.35Z"
+            fill="#428445"
+            stroke="white"
+            stroke-width="0.7" />
+          <path d="M5.53271 8.66357L9.25213 4.68197" stroke="white" />
+          <path d="M4.10645 6.7688L6.13766 8.62553" stroke="white">
+        </svg>
+        {{ 'customer.recover_password.success' | t }}
+      </h3>
+    {%- endif -%}
+    <div class="tab tab-account">
+      <div class="form-account-header">
+        <button class="tablinks active tablinks-customer" onclick="openCity(event, 'customerAccount')">
+          Customer Account
+        </button>
+        <button class="tablinks tablinks-wholesaler" onclick="openCity(event, 'wholesalerAccount')">
+          Wholesaler Account
+        </button>
+      </div>
+    </div>
+    <div class="form-account-content">
+      <div id="customerAccount" class="tabcontent customer-class">
+        {%- form 'customer_login', class: form_class -%}
+          {%- if form.posted_successfully? -%}
+            zczczx zxczxc zxczxczx zxczxc
+            <h2 class="form-status form-status-list form__message" tabindex="-1" autofocus>
+              {% render 'icon-success' %}
+              {{ 'templates.contact.form.post_success' | t }}
+            </h2>
+          {%- elsif form.errors -%}
+            <h2
+              class="form__message"
+              tabindex="-1"
+              autofocus
+            >
+              <span class="visually-hidden">{{ 'accessibility.error' | t }} </span>
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 13 13"
+              >
+                <circle
+                  cx="6.5"
+                  cy="6.50049"
+                  r="5.5"
+                  stroke="white"
+                  stroke-width="2" />
+                <circle
+                  cx="6.5"
+                  cy="6.5"
+                  r="5.5"
+                  fill="#EB001B"
+                  stroke="#EB001B"
+                  stroke-width="0.7" />
+                <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white" />
+                <path
+                  d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z"
+                  fill="white"
+                  stroke="#EB001B"
+                  stroke-width="0.7">
+              </svg>
+              {{ 'templates.contact.form.error_heading' | t }}
+            </h2>
+            {{ form.errors | default_errors }}
+          {%- endif -%}
+
+          <div class="form">
+            <div class="form-account">
+              <input
+                class="input__field"
+                type="email"
+                name="customer[email]"
+                id="CustomerEmail"
+                autocomplete="email"
+                autocorrect="off"
+                autocapitalize="off"
+                {% if form.errors contains 'form' %}
+                  aria-invalid="true"
+                {% endif %}
+                required
+                placeholder=""
+              >
+              <label for="SigninForm-Email" class="input__label">
+                {{ 'customer.login_page.email' | t }}
+              </label>
+            </div>
+
+            {%- if form.password_needed -%}
+              <div class="form-account">
+                <input
+                  class="input__field"
+                  type="password"
+                  value=""
+                  name="customer[password]"
+                  id="CustomerPassword"
+                  autocomplete="current-password"
+                  {% if form.errors contains 'form' %}
+                    aria-invalid="true"
+                  {% endif %}
+                  required
+                  placeholder=""
+                >
+                <label for="SigninForm-Password" class="input__label">
+                  {{ 'customer.login_page.password' | t }}
+                </label>
+              </div>
+
+              <a href="#recover">
+                {{ 'customer.login_page.forgot_password' | t }}
+              </a>
+            {%- endif -%}
+          </div>
+          <div class="btn-account">
+            <button class="btn-submit">
+              {{ 'customer.login_page.sign_in' | t }}
+            </button>
+            <button type="reset" class="btn-reset">
+              <a href="{{ routes.account_register_url }}">
+                {{ 'customer.login_page.sign_up' | t }}
+              </a>
+            </button>
+          </div>
+
+          {% comment %}
+            <a href="{{ routes.account_register_url }}">
+              {{ 'customer.login_page.create_account' | t }}
+            </a>
+          {% endcomment %}
+          <button class="btn-login">
+            Login with
+            <svg width="44" height="24" viewBox="0 0 44 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.45788 7.91581C3.71462 7.53356 2.93812 7.38444 2.93812 6.70736C2.93812 6.0697 3.46264 5.75088 4.51511 5.75088C5.44074 5.75088 6.1161 6.15884 6.61491 6.95762C6.6325 6.98727 6.66073 7.0091 6.69386 7.01866C6.72698 7.02821 6.7625 7.02477 6.79318 7.00904L8.75756 6.008C8.77429 5.99906 8.78904 5.98684 8.80092 5.97206C8.8128 5.95728 8.82156 5.94025 8.82669 5.92199C8.83181 5.90374 8.83319 5.88463 8.83073 5.86583C8.82828 5.84703 8.82205 5.82892 8.81242 5.81259C7.99821 4.38815 6.49321 3.60822 4.50997 3.60822C1.90451 3.60822 0.286377 4.90239 0.286377 6.96105C0.286377 9.14655 2.25762 9.6985 4.00602 10.0807C5.75443 10.4613 6.53264 10.6121 6.53264 11.2892C6.53264 11.968 5.96355 12.2868 4.83051 12.2868C3.78147 12.2868 3.00497 11.8034 2.53359 10.8641C2.51709 10.832 2.48857 10.8076 2.45422 10.7964C2.41988 10.7851 2.38249 10.7879 2.35018 10.8041L0.390938 11.7812C0.357684 11.7984 0.332555 11.828 0.321003 11.8636C0.309452 11.8992 0.312407 11.938 0.329229 11.9714C1.10744 13.5484 2.70157 14.4346 4.83223 14.4346C7.54568 14.4346 9.18438 13.1627 9.18438 11.0407C9.18438 8.91857 7.20457 8.30149 5.4596 7.92096L5.45788 7.91581ZM15.9826 3.60822C14.8684 3.60822 13.8845 4.0059 13.1783 4.71555C13.1686 4.7258 13.156 4.73281 13.1422 4.73564C13.1284 4.73847 13.114 4.73697 13.1011 4.73135C13.0882 4.72573 13.0773 4.71626 13.0699 4.70423C13.0626 4.6922 13.0591 4.67819 13.06 4.66412V0.138844C13.0602 0.120692 13.0569 0.102675 13.0501 0.0858396C13.0433 0.0690039 13.0332 0.0536839 13.0205 0.0407681C13.0077 0.0278523 12.9925 0.0175987 12.9758 0.0106003C12.959 0.00360195 12.941 -1.41158e-06 12.9229 6.69852e-09H10.4631C10.4448 -5.71305e-06 10.4267 0.00365162 10.4098 0.0107564C10.393 0.0178612 10.3777 0.0282699 10.3649 0.0413689C10.3521 0.0544679 10.3421 0.0699922 10.3354 0.0870273C10.3287 0.104062 10.3255 0.122263 10.326 0.140558V14.1861C10.3255 14.2044 10.3287 14.2226 10.3354 14.2396C10.3421 14.2566 10.3521 14.2722 10.3649 14.2853C10.3777 14.2984 10.393 14.3088 10.4098 14.3159C10.4267 14.323 10.4448 14.3266 10.4631 14.3266H12.9195C12.9379 14.3269 12.9562 14.3234 12.9733 14.3164C12.9903 14.3094 13.0058 14.299 13.0188 14.2859C13.0317 14.2728 13.0419 14.2572 13.0487 14.24C13.0555 14.2229 13.0588 14.2045 13.0583 14.1861V8.02552C13.0583 6.8342 13.9634 5.92229 15.1821 5.92229C16.3991 5.92229 17.2836 6.81535 17.2836 8.02552V14.1861C17.2831 14.2045 17.2864 14.2229 17.2932 14.24C17.3 14.2572 17.3102 14.2728 17.3231 14.2859C17.3361 14.299 17.3516 14.3094 17.3686 14.3164C17.3857 14.3234 17.404 14.3269 17.4224 14.3266H19.8788C19.8972 14.3269 19.9155 14.3234 19.9326 14.3164C19.9497 14.3094 19.9651 14.299 19.9781 14.2859C19.9911 14.2728 20.0012 14.2572 20.008 14.24C20.0148 14.2229 20.0181 14.2045 20.0176 14.1861V8.02552C20.0176 5.43719 18.3378 3.60822 15.9826 3.60822ZM25.004 3.20541C23.6704 3.20541 22.4208 3.6168 21.5243 4.21331C21.4943 4.23272 21.4728 4.26285 21.4642 4.29757C21.4556 4.33228 21.4606 4.36896 21.4781 4.40015L22.5614 6.26511C22.5703 6.28098 22.5823 6.29491 22.5966 6.3061C22.6109 6.3173 22.6273 6.32552 22.6449 6.33031C22.6624 6.33509 22.6808 6.33634 22.6988 6.33398C22.7168 6.33161 22.7342 6.32569 22.7499 6.31654C23.43 5.90145 24.2124 5.6842 25.0092 5.68917C27.1518 5.68917 28.7288 7.21645 28.7288 9.23397C28.7288 10.9532 27.4672 12.2251 25.8679 12.2251C24.5652 12.2251 23.6601 11.4606 23.6601 10.379C23.6601 9.76021 23.9207 9.25283 24.5995 8.89458C24.6163 8.886 24.6312 8.87404 24.6432 8.85944C24.6552 8.84484 24.6641 8.82791 24.6692 8.80972C24.6744 8.79153 24.6757 8.77247 24.6732 8.75374C24.6706 8.73501 24.6642 8.71701 24.6543 8.70088L23.6327 6.9559C23.6165 6.92751 23.5906 6.90586 23.5598 6.89486C23.529 6.88386 23.4953 6.88423 23.4647 6.89591C22.0951 7.40843 21.1352 8.64089 21.1352 10.2967C21.1352 12.7993 23.1099 14.6677 25.8662 14.6677C29.0836 14.6677 31.3977 12.4171 31.3977 9.19112C31.3977 5.73202 28.7065 3.20541 25.004 3.20541ZM38.5833 3.58766C37.3423 3.58766 36.2298 4.05047 35.4207 4.86639C35.3762 4.91267 35.3025 4.87839 35.3025 4.81668V3.8362C35.3029 3.81791 35.2997 3.79971 35.293 3.78267C35.2863 3.76564 35.2763 3.75011 35.2635 3.73701C35.2507 3.72392 35.2355 3.71351 35.2186 3.7064C35.2017 3.6993 35.1836 3.69564 35.1653 3.69565H32.7707C32.7524 3.69564 32.7343 3.6993 32.7174 3.7064C32.7006 3.71351 32.6853 3.72392 32.6725 3.73701C32.6597 3.75011 32.6497 3.76564 32.643 3.78267C32.6363 3.79971 32.6331 3.81791 32.6336 3.8362V17.8611C32.6333 17.8793 32.6367 17.8973 32.6435 17.9142C32.6503 17.931 32.6604 17.9463 32.6731 17.9592C32.6859 17.9721 32.7011 17.9824 32.7178 17.9894C32.7346 17.9964 32.7525 18 32.7707 18H35.227C35.2453 18.0002 35.2635 17.9968 35.2804 17.9899C35.2974 17.983 35.3128 17.9728 35.3257 17.9598C35.3387 17.9469 35.3489 17.9315 35.3558 17.9145C35.3627 17.8976 35.3661 17.8794 35.3659 17.8611V13.2622C35.3659 13.2004 35.4396 13.1696 35.4841 13.2107C36.3239 13.9953 37.4342 14.4252 38.5833 14.4106C41.4664 14.4106 43.7136 12.0571 43.7136 8.99914C43.7136 5.94114 41.463 3.58766 38.5833 3.58766ZM38.1188 12.0366C36.4801 12.0366 35.2373 10.7201 35.2373 8.98028C35.2373 7.24045 36.4766 5.924 38.1188 5.924C39.7609 5.924 40.9985 7.21817 40.9985 8.98028C40.9985 10.7407 39.778 12.0366 38.1188 12.0366Z" fill="white"/>
+            </svg>
+          </button>
+        {%- endform -%}
+      </div>
+      <div id="wholesalerAccount" class="tabcontent wholesaler-class">
+        {%- form 'customer_login' -%}
+          {% comment %}
+            {%- if form.errors -%}
+              <h2
+                class="form__message"
+                tabindex="-1"
+                autofocus
+              >
+                <span class="visually-hidden">{{ 'accessibility.error' | t }} </span>
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  viewBox="0 0 13 13"
+                >
+                  <circle
+                    cx="6.5"
+                    cy="6.50049"
+                    r="5.5"
+                    stroke="white"
+                    stroke-width="2" />
+                  <circle
+                    cx="6.5"
+                    cy="6.5"
+                    r="5.5"
+                    fill="#EB001B"
+                    stroke="#EB001B"
+                    stroke-width="0.7" />
+                  <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white" />
+                  <path
+                    d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z"
+                    fill="white"
+                    stroke="#EB001B"
+                    stroke-width="0.7">
+                </svg>
+                {{ 'templates.contact.form.error_heading' | t }}
+              </h2>
+              {{ form.errors | default_errors }}
+            {%- endif -%}
+          {% endcomment %}
+
+          <div class="form">
+            <div class="form-account">
+              <input
+                class="input__field"
+                type="email"
+                name="customer[email]"
+                id="CustomerEmail"
+                autocomplete="email"
+                autocorrect="off"
+                autocapitalize="off"
+                {% if form.errors contains 'form' %}
+                  aria-invalid="true"
+                {% endif %}
+                placeholder=""
+                required
+              >
+              <label for="SigninForm-Email" class="input__label">
+                {{ 'customer.login_page.email' | t }}
+              </label>
+            </div>
+
+            {%- if form.password_needed -%}
+              <div class="form-account">
+                <input
+                  class="input__field"
+                  type="password"
+                  name="customer[password]"
+                  id="CustomerPassword"
+                  autocomplete="current-password"
+                  {% if form.errors contains 'form' %}
+                    aria-invalid="true"
+                  {% endif %}
+                  placeholder=""
+                  required
+                >
+                <label for="SigninForm-Password" class="input__label">
+                  {{ 'customer.login_page.password' | t }}
+                </label>
+              </div>
+              <a href="#recover">
+                {{ 'customer.login_page.forgot_password' | t }}
+              </a>
+            {%- endif -%}
+          </div>
+          <div class="btn-account">
+            <button class="btn-submit">
+              {{ 'customer.login_page.sign_in' | t }}
+            </button>
+            <button type="reset" class="btn-reset">
+              <a href="{{ routes.account_register_url }}">
+                {{ 'customer.login_page.sign_up' | t }}
+              </a>
+            </button>
+          </div>
+
+          {% comment %}
+            <a href="{{ routes.account_register_url }}">
+              {{ 'customer.login_page.create_account' | t }}
+            </a>
+          {% endcomment %}
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+
+  {%- if shop.checkout.guest_login -%}
+    <div>
+      <hr>
+      <h2>{{ 'customer.login_page.guest_title' | t }}</h2>
+
+      {%- form 'guest_login' -%}
+        <button>
+          {{ 'customer.login_page.guest_continue' | t }}
+        </button>
+      {%- endform -%}
+    </div>
+  {%- endif -%}
+</div>
+<script src="{{ 'account.js' | asset_url }}" defer="defer"></script>
+{% schema %}
+{
+  "name": "t:sections.main-login.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "default": "<p>Login</p>",
+      "label": "t:sections.rich-text.blocks.text.settings.text.label"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

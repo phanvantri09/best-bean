@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "main": {
+      "type": "wholesale",
+      "disabled": true,
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

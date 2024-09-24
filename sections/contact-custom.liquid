@@ -1,0 +1,231 @@
+  {{ 'wholesale.css' | asset_url | stylesheet_tag }}
+  {{ 'contact.css' | asset_url | stylesheet_tag }}
+
+<section class="contact-container">
+  <div class="contact-info">
+    <div class="contact-content">
+      <h2 class="form-title">
+          {{section.settings.form_title}}
+        </h2>
+        <p class="form-description">
+          {{section.settings.form_description}}
+        </p>
+      {%- capture form_class -%}contact-form__form {% if section.settings.layout != 'full' %}{% if section.settings.enable_shadow %}shadow{% endif %} border-radius{% endif %}{%- endcapture -%}
+      {%- form 'contact', class: form_class -%}
+        <div class="contact-form contact-form-mobile--{{ section.settings.image_height_mobile }} contact-form-large--{{ section.settings.image_height_large }} {% if section.settings.form_first %}contact-form--reverse{% endif %} {% if section.settings.custom_colors %}{% else %}{% if section.settings.color_scheme != 'soft' %}color color-{{ section.settings.color_scheme }}{% endif %} color-gradient{% else %}contact-form--margin-top contact-form--bordered{% endif %}">
+          {%- if section.settings.image != blank -%}
+            <div class="contact-form__image {% if section.settings.layout == 'full' %}{% if section.settings.enable_shadow %}shadow{% endif %} border-radius{% endif %}">
+              {{ section.settings.image | image_url: width: 1920 | image_tag: loading: 'lazy' }}
+            </div>
+          {%- else -%}
+            <div class="contact-form__placeholder {% if section.settings.layout == 'full' %}shadow{% endif %}">
+              {{ 'lifestyle-1' | placeholder_svg_tag: '' }}
+            </div>
+          {%- endif -%}
+
+          <div class="form {% if section.settings.layout == 'full' %}form--no-padding{% endif %}">
+            {%- if section.settings.title != blank or section.settings.text != blank -%}
+              <header class="contact-form__heading">
+                {%- if section.settings.title != blank -%}
+                  <h2 class="section-heading__heading {{ section.settings.heading_size }}">
+                    {{ section.settings.title | escape }}
+                  </h2>
+                {%- endif -%}
+
+                {%- if section.settings.text != blank -%}
+                  <div class="section-heading__subheading">
+                    <div class="rte {{ section.settings.text_style }}">
+                      {{ section.settings.text }}
+                    </div>
+                  </div>
+                {%- endif -%}
+              </header>
+            {%- endif -%}
+
+            {%- if form.posted_successfully? -%}
+              <span class="form-message small-text" id="Contact-success--{{ section.id }}" tabindex="-1" autofocus>
+                {% comment %} {% render 'icon' with 'green-check' %} {% endcomment %}
+                <span>success</span>
+              </span>
+            {%- endif -%}
+
+            {%- if form.errors -%}
+              <small class="form-message small-text" id="Contact-error--{{ section.id }}">
+                {% comment %} {% render 'icon' with 'red-exclamation' %}{{ form.errors | default_errors }} {% endcomment %}
+              </small>
+            {%- endif -%}
+
+            <div class="input-group">
+              <input is="loess-input-field" type="email" placeholder="" class="input__field {% if customer.email != blank %}input__field--has-input{% endif %}" name="contact[email]" id="ContactEmail-{{ section.id }}" {% if customer %}value="{{ customer.email }}"{% endif %} required>
+              <label for="ContactEmail-{{ section.id }}" class="input__label">
+              Email <span aria-hidden="true">*</span>
+              </label>
+            </div>
+            {%- for block in section.blocks -%}
+              {%- liquid
+                assign count = 0
+                assign input_label = block.settings.title | escape
+
+                if input_label == blank
+                  assign count = count | plus: 1
+                  assign input_label = 'Label ' | append: count
+                endif
+              -%}
+
+              <div class="input-group">
+                  {%- case block.type -%}
+                    {%- when 'text-field' -%}
+                      {%- if block.settings.multi_line_field == false -%}
+                        <input is="loess-input-field" type="text" placeholder="" class="input__field" name="contact[{{ input_label | escape }}]" id="Contact-{{ input_label | handle }}-{{ section.id }}" {% if block.settings.required %}required{% endif %}>
+                        <label for="Contact-{{ input_label | handle }}-{{ section.id }}" class="input__label">
+                          {{ input_label }}{% if block.settings.require %}*{% endif %}
+                        </label>
+                      {%- else -%}
+                        <textarea class="input__field input__textarea" name="contact[{{ input_label | escape }}]" id="Contact-{{ input_label | handle }}-{{ section.id }}" placeholder="{{ input_label }}{% if block.settings.required %}*{% endif %}" {% if block.settings.required %}required{% endif %}></textarea>
+                        <label class="sr-only" for="Contact-{{ input_label | handle }}-{{ section.id }}">
+                          {{ input_label }}
+                        </label>
+                      {%- endif -%}
+
+                    {%- when 'dropdown-menu' -%}
+                      {%- assign options = block.settings.options | split: ',' -%}
+
+                      {%- if options == blank -%}
+                        {%- continue -%}
+                      {%- endif -%}
+
+                      <label class="input__label input__label--select" for="Contact-{{ input_label | handle }}-{{ section.id }}">
+                        {{ input_label | escape }}{% if block.settings.required %}*{% endif %}
+                      </label>
+                      <div class="input__select-wrapper">
+                        <select id="Contact-{{ input_label | handle }}-{{ section.id }}" class="input__select" name="contact[{{ input_label | escape }}]"{% if block.settings.required %}required{% endif %}>
+                          <option selected disabled>---</option>
+
+                          {%- for option in options -%}
+                            <option value="{{ option | strip | escape }}">
+                              {{ option | strip | escape }}
+                            </option>
+                          {%- endfor -%}
+                        </select>
+                        <span>
+                          {% comment %} {% render 'icon' with 'caret' %} {% endcomment %}
+                        </span>
+                      </div>
+                  {%- endcase -%}
+              </div>
+            {%- endfor -%}
+
+            <div class="contact-form__textarea input-group">
+              <textarea class="input__field input__textarea caption" placeholder="" name="contact[body]" id="ContactComment-{{ section.id }}" placeholder="Message" required></textarea>
+              <label class="sr-only" for="ContactComment-{{ section.id }}">comment</label>
+            </div>
+
+            <button type="submit" class="button button--primary button--center {% if section.settings.color_scheme == 'soft' %}soft-background--default-text{% endif %} tap">
+            Send
+            <img src="{{'arrow.svg' |  asset_url}}" alt="">
+            </button>
+          </div>
+        </div>
+      {%- endform -%}
+    </div>
+  </div>
+  <div class="contact-image">
+     <img src="{{ 'bg-contact.png' | asset_url }}" height="100%" width="100%" alt="">
+  </div>
+</section>
+{% schema %}
+{
+"name": "Contact Custom",
+"settings": [
+     {
+             "id": "page_title",
+             "type": "text",
+             "label": "Page Title"
+           },
+            {
+             "id": "form_title",
+             "type": "text",
+             "label": "Form Title",
+             "default":" Contact us"
+           },
+            {
+             "id": "form_description",
+             "type": "text",
+             "label": "Form description",
+             "default":"We love hearing from our customers, so grab a cup and tell us what’s on your mind."
+           }
+],
+  "blocks": [
+    {
+      "type": "text-field",
+      "name": "Text field",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required field",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "multi_line_field",
+          "label": "Multi-line field",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label"
+        }
+      ]
+    },
+    {
+      "type": "dropdown-menu",
+      "name": "Dropdown menu",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required field",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label"
+        },
+        {
+          "type": "text",
+          "id": "options",
+          "label": "Options",
+          "default": "Option 1, Option 2, Option 3",
+          "info": "Separate each option with a comma"
+        }
+      ]
+    }
+  ]
+,
+"presets": [
+    {
+    "name": "Contact section",
+    "blocks": [
+        {
+          "type": "text-field",
+          "settings": {
+            "title": "Name",
+            "required": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

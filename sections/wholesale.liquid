@@ -1,0 +1,434 @@
+{{ 'wholesale.css' | asset_url | stylesheet_tag }}
+
+<section class="wholesale-container">
+  <div class="wholesale-detail">
+    <img class="image-wholesale" src="{{ 'wholesale-image.svg' | asset_url }}" alt="">
+    <div class="wholesale-detail--content">
+      <p class="content-description">
+        {{ section.settings.description }}
+      </p>
+      <div class="content-blocks">
+        <div class="col-left">
+          <div class="content-blocks-item">
+            <img class="item-image" src="{{ 'image-block1.png' | asset_url }}" alt="">
+            <p class="item-title">
+              {{ section.settings.left_item_title_1 }}
+            </p>
+            <p class="item-description">
+              {{ section.settings.left_item_description_1 }}
+            </p>
+          </div>
+          <div class="content-blocks-item">
+            <img class="item-image" src="{{ 'image-block3.png' | asset_url }}" alt="">
+            <p class="item-title">
+              {{ section.settings.left_item_title_2 }}
+            </p>
+            <p class="item-description">
+              {{ section.settings.left_item_description_2 }}
+            </p>
+          </div>
+          <div class="content-blocks-item">
+            <img class="item-image" src="{{ 'image-block5.png' | asset_url }}" alt="">
+            <p class="item-title">
+              {{ section.settings.left_item_title_3 }}
+            </p>
+            <p class="item-description">
+              {{ section.settings.left_item_description_3 }}
+            </p>
+          </div>
+        </div>
+        <div class="col-right">
+          <div class="content-blocks-item">
+            <img class="item-image" src="{{ 'image-block2.png' | asset_url }}" alt="">
+            <p class="item-title">
+              {{ section.settings.right_item_title_1 }}
+            </p>
+            <p class="item-description">
+              {{ section.settings.right_item_description_1 }}
+            </p>
+          </div>
+          <div class="content-blocks-item">
+            <img class="item-image" src="{{ 'image-block4.png' | asset_url }}" alt="">
+            <p class="item-title">
+              {{ section.settings.right_item_title_2 }}
+            </p>
+            <p class="item-description">
+              {{ section.settings.right_item_description_2 }}
+            </p>
+          </div>
+          <div class="content-blocks-item">
+            <img class="item-image" src="{{ 'image-block6.png' | asset_url }}" alt="">
+            <p class="item-title">
+              {{ section.settings.right_item_title_3 }}
+            </p>
+            <p class="item-description">
+              {{ section.settings.right_item_description_3 }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wholesale-contact">
+    <div class="contact">
+      <h2 class="form-title">
+        {{ section.settings.form_title }}
+      </h2>
+      <p class="form-description">
+        {{ section.settings.form_description }}
+      </p>
+      {%- capture form_class -%}contact-form__form {% if section.settings.layout != 'full' %}{% if section.settings.enable_shadow %}shadow{% endif %} border-radius{% endif %}{%- endcapture -%}
+      {%- form 'contact', class: form_class -%}
+        <div class="contact-form contact-form-mobile--{{ section.settings.image_height_mobile }} contact-form-large--{{ section.settings.image_height_large }} {% if section.settings.form_first %}contact-form--reverse{% endif %} {% if section.settings.custom_colors %}{% else %}{% if section.settings.color_scheme != 'soft' %}color color-{{ section.settings.color_scheme }}{% endif %} color-gradient{% else %}contact-form--margin-top contact-form--bordered{% endif %}">
+          {%- if section.settings.image != blank -%}
+            <div class="contact-form__image {% if section.settings.layout == 'full' %}{% if section.settings.enable_shadow %}shadow{% endif %} border-radius{% endif %}">
+              {{ section.settings.image | image_url: width: 1920 | image_tag: loading: 'lazy' }}
+            </div>
+          {%- else -%}
+            <div class="contact-form__placeholder {% if section.settings.layout == 'full' %}shadow{% endif %}">
+              {{ 'lifestyle-1' | placeholder_svg_tag: '' }}
+            </div>
+          {%- endif -%}
+
+          <div class="form {% if section.settings.layout == 'full' %}form--no-padding{% endif %}">
+            {%- if section.settings.title != blank or section.settings.text != blank -%}
+              <header class="contact-form__heading">
+                {%- if section.settings.title != blank -%}
+                  <h2 class="section-heading__heading {{ section.settings.heading_size }}">
+                    {{ section.settings.title | escape }}
+                  </h2>
+                {%- endif -%}
+
+                {%- if section.settings.text != blank -%}
+                  <div class="section-heading__subheading">
+                    <div class="rte {{ section.settings.text_style }}">
+                      {{ section.settings.text }}
+                    </div>
+                  </div>
+                {%- endif -%}
+              </header>
+            {%- endif -%}
+
+            {%- if form.posted_successfully? -%}
+              <span class="form-message small-text" id="Contact-success--{{ section.id }}" tabindex="-1" autofocus>
+                {% comment %} {% render 'icon' with 'green-check' %} {% endcomment %}
+                <span>success</span>
+              </span>
+            {%- endif -%}
+
+            {%- if form.errors -%}
+              <small class="form-message small-text" id="Contact-error--{{ section.id }}">
+                {% comment %} {% render 'icon' with 'red-exclamation' %}{{ form.errors | default_errors }} {% endcomment %}
+              </small>
+            {%- endif -%}
+
+            <div class="input-group">
+              <input
+                is="loess-input-field"
+                type="email"
+                class="input__field {% if customer.email != blank %}input__field--has-input{% endif %}"
+                name="contact[email]"
+                id="ContactEmail-{{ section.id }}"
+                {% if customer %}
+                  value="{{ customer.email }}"
+                {% endif %}
+                required
+                placeholder=""
+              >
+              <label for="ContactEmail-{{ section.id }}" class="input__label">
+                Email <span aria-hidden="true">*</span>
+              </label>
+            </div>
+            {%- for block in section.blocks -%}
+              {%- liquid
+                assign count = 0
+                assign input_label = block.settings.title | escape
+
+                if input_label == blank
+                  assign count = count | plus: 1
+                  assign input_label = 'Label ' | append: count
+                endif
+              -%}
+
+              <div class="input-group">
+                {%- case block.type -%}
+                  {%- when 'text-field' -%}
+                    {%- if block.settings.multi_line_field == false -%}
+                      <input
+                        is="loess-input-field"
+                        type="text"
+                        class="input__field"
+                        name="contact[{{ input_label | escape }}]"
+                        id="Contact-{{ input_label | handle }}-{{ section.id }}"
+                        placeholder=""
+                        {% if block.settings.required %}
+                          required
+                        {% endif %}
+                        placeholder=""
+                      >
+                      <label for="Contact-{{ input_label | handle }}-{{ section.id }}" class="input__label">
+                        {{ input_label -}}
+                        {%- if block.settings.require %}*{% endif %}
+                      </label>
+                    {%- else -%}
+                      <textarea
+                        class="input__field input__textarea"
+                        name="contact[{{ input_label | escape }}]"
+                        id="Contact-{{ input_label | handle }}-{{ section.id }}"
+                        placeholder="{{ input_label }}{% if block.settings.required %}*{% endif %}"
+                        {% if block.settings.required %}
+                          required
+                        {% endif -%}
+                      ></textarea>
+                      <label class="sr-only" for="Contact-{{ input_label | handle }}-{{ section.id }}">
+                        {{ input_label }}
+                      </label>
+                    {%- endif -%}
+
+                  {%- when 'dropdown-menu' -%}
+                    {%- assign options = block.settings.options | split: ',' -%}
+
+                    {%- if options == blank -%}
+                      {%- continue -%}
+                    {%- endif -%}
+
+                    <label
+                      class="input__label input__label--select"
+                      for="Contact-{{ input_label | handle }}-{{ section.id }}"
+                    >
+                      {{ input_label | escape -}}
+                      {%- if block.settings.required %}*{% endif %}
+                    </label>
+                    <div class="input__select-wrapper input__select-wrapper{{ forloop.index }}">
+                      <select
+                        id="Contact-{{ input_label | handle }}-{{ section.id }}"
+                        class="input__select"
+                        name="contact[{{ input_label | escape }}]"
+                        {% if block.settings.required %}
+                          required
+                        {% endif %}
+                        onchange="changeBackgroundColor(this, {{ forloop.index }})"
+                      >
+                        <option selected disabled>---</option>
+
+                        {%- for option in options -%}
+                          <option value="{{ option | strip | escape }}">
+                            {{ option | strip | escape }}
+                          </option>
+                        {%- endfor -%}
+                      </select>
+                      <span>
+                        {% comment %} {% render 'icon' with 'caret' %} {% endcomment %}
+                      </span>
+                    </div>
+                {%- endcase -%}
+              </div>
+            {%- endfor -%}
+
+            <div class="contact-form__textarea input-group">
+              <textarea
+                class="input__field input__textarea caption"
+                name="contact[body]"
+                id="ContactComment-{{ section.id }}"
+                placeholder="Message"
+                required
+              ></textarea>
+              <label class="sr-only" for="ContactComment-{{ section.id }}">comment</label>
+            </div>
+
+            <button
+              type="submit"
+              class="button button--primary button--center {% if section.settings.color_scheme == 'soft' %}soft-background--default-text{% endif %} tap"
+            >
+              Send
+              <img src="{{'arrow.svg' |  asset_url}}" alt="">
+            </button>
+          </div>
+        </div>
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+<script>
+  function changeBackgroundColor(selectElement, index) {
+    var selectedValue = selectElement.value;
+    var selectionElement = document.querySelector('.input__select-wrapper'+index);
+    if (selectedValue) {
+      selectElement.style.backgroundColor = 'white';
+      selectionElement.style.borderBottom = '1px solid #000';
+    }
+  }
+</script>
+{% schema %}
+{
+  "name": "Wholesale",
+  "settings": [
+    {
+      "id": "page_title",
+      "type": "text",
+      "label": "Page Title"
+    },
+    {
+      "id": "description",
+      "type": "html",
+      "label": "Description",
+      "default": "Are you ready to take your coffee business to extraordinary new heights? Best Bean Best Cup invites you to join forces with us and unleash the full potential of your enterprise.<br/><br/>Why Partner with Best Bean Best Cup?"
+    },
+    {
+      "id": "left_item_title_1",
+      "type": "text",
+      "label": "Left item title 1",
+      "default": "Exquisite Quality"
+    },
+    {
+      "id": "left_item_description_1",
+      "type": "inline_richtext",
+      "label": "Left item description 1",
+      "default": "Our beans are sourced from the most esteemed coffee regions worldwide, ensuring an unparalleled taste experience that will captivate your customers and keep them coming back for more."
+    },
+    {
+      "id": "left_item_title_2",
+      "type": "text",
+      "label": "Left item title 2",
+      "default": "Tailored Support"
+    },
+    {
+      "id": "left_item_description_2",
+      "type": "inline_richtext",
+      "label": "Left item description 2",
+      "default": "Benefit from our dedicated team of experts who are committed to your success. From personalized consultations to bespoke marketing strategies, we provide the support you need to thrive in a competitive market."
+    },
+    {
+      "id": "left_item_title_3",
+      "type": "text",
+      "label": "Left item title 3",
+      "default": "Sustainable Partnership"
+    },
+    {
+      "id": "left_item_description_3",
+      "type": "inline_richtext",
+      "label": "Left item description 3",
+      "default": "Join us in our mission to promote sustainability and ethical sourcing practices within the coffee industry. Together, we can make a positive impact on the environment and the communities we serve."
+    },
+    {
+      "id": "right_item_title_1",
+      "type": "text",
+      "label": "Right item title 1",
+      "default": "Comprehensive Range"
+    },
+    {
+      "id": "right_item_description_1",
+      "type": "inline_richtext",
+      "label": "Right item description 1",
+      "default": "From bold and juicy blends to intricately nuanced single origins, our extensive selection offers something for every palate, allowing you to cater to diverse tastes and preferences with ease."
+    },
+    {
+      "id": "right_item_title_2",
+      "type": "text",
+      "label": "Right item title 2",
+      "default": "Competitive Edge"
+    },
+    {
+      "id": "right_item_description_2",
+      "type": "inline_richtext",
+      "label": "Right item description 2",
+      "default": " In an ever changing industry it's imperative that you don't get left behind. Our Training Centre has mapped out the equipment, products & technologies that will change our industry over the next 5 years. These insights can help set your business and future proof your operation so that you are a success."
+    },
+    {
+      "id": "right_item_title_3",
+      "type": "text",
+      "label": "Right item title 3",
+      "default": "Ready to Transform Your Business?"
+    },
+    {
+      "id": "right_item_description_3",
+      "type": "inline_richtext",
+      "label": "Right item description 3",
+      "default": "Seize the opportunity to partner with Best Bean Best Cup and unlock a world of possibilities for your coffee business."
+    },
+    {
+      "id": "form_title",
+      "type": "html",
+      "label": "Form title",
+      "default": "Together<br/> we Grow."
+    },
+    {
+      "id": "form_description",
+      "type": "inline_richtext",
+      "label": "Form description",
+      "default": "  Be our partner. Together, let's brew greatness and redefine the standards of excellence in the coffee industry!"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text-field",
+      "name": "Text field",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required field",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "multi_line_field",
+          "label": "Multi-line field",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label"
+        }
+      ]
+    },
+    {
+      "type": "dropdown-menu",
+      "name": "Dropdown menu",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required field",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label"
+        },
+        {
+          "type": "text",
+          "id": "options",
+          "label": "Options",
+          "default": "Option 1, Option 2, Option 3",
+          "info": "Separate each option with a comma"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wholesale section",
+      "blocks": [
+        {
+          "type": "text-field",
+          "settings": {
+            "title": "Name",
+            "required": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

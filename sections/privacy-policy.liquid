@@ -1,0 +1,72 @@
+  {{ 'privacy-policy.css' | asset_url | stylesheet_tag }}
+
+<section class="faq-container">
+    <div class="static-content-navigation"> 
+      <ul> 
+        <li><a href="/pages/privacy-policy" class="active">Privacy Policy</a></li> 
+        <li><a href="#">Refund Policy</a></li> 
+        <li><a href="#">Shipping Policy</a></li> 
+        <li><a href="#">Terms of Service</a></li> 
+      </ul> 
+  </div>
+  <div class="static-content">
+    <h2 class="page-title">
+        {%- if section.settings.page_title != blank -%}
+            {{ section.settings.page_title | escape }}
+    {%- endif -%}
+   </h2>
+   <div class="content-container">
+   {%- for block in section.blocks -%}
+    <div class="content-item">
+        <h2 class="title">
+            {{block.settings.title}}
+        </h2>
+        <div class="description">
+            {{block.settings.content}}
+        </div>
+    </div>
+    {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+"name": "Privacy Policy",
+"settings": [
+     {
+             "id": "page_title",
+             "type": "text",
+             "label": "Page Title"
+           }
+],
+"blocks": [
+       {
+         "type": "list",
+         "name": "Privacy policy list",
+         "settings": [
+           {
+             "id": "title",
+             "type": "text",
+             "label": "Title"
+           },
+           {
+             "id": "content",
+             "type": "html",
+             "label": "Content"
+           }
+         ]
+       }
+     ],
+"presets": [
+    {
+    "name": "Privacy policy section",
+    "settings": {},
+    "blocks": [
+      {
+      "type": "list"
+      }
+    ]
+    }
+  ]
+}
+{% endschema %}

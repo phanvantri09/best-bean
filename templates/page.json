@@ -1,0 +1,113 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "wholesale_mbgkgY": {
+      "type": "wholesale",
+      "blocks": {
+        "text_field_9Y4HTH": {
+          "type": "text-field",
+          "settings": {
+            "required": true,
+            "multi_line_field": false,
+            "title": "Full Name"
+          }
+        },
+        "text_field_tiAGDt": {
+          "type": "text-field",
+          "settings": {
+            "required": false,
+            "multi_line_field": false,
+            "title": "Phone Number"
+          }
+        },
+        "text_field_UzVrb7": {
+          "type": "text-field",
+          "settings": {
+            "required": false,
+            "multi_line_field": false,
+            "title": "Website or Social Media"
+          }
+        },
+        "text_field_nHw78j": {
+          "type": "text-field",
+          "settings": {
+            "required": false,
+            "multi_line_field": false,
+            "title": "Business Name"
+          }
+        },
+        "text_field_NbTV98": {
+          "type": "text-field",
+          "settings": {
+            "required": false,
+            "multi_line_field": false,
+            "title": "Business Location"
+          }
+        },
+        "dropdown_menu_qBymea": {
+          "type": "dropdown-menu",
+          "settings": {
+            "required": false,
+            "title": "State",
+            "options": "Australian Capital Territory, New South Wales, Northern Territory, Queensland, South Australia, Tasmania, Victoria, Western Australia."
+          }
+        },
+        "dropdown_menu_qATYjE": {
+          "type": "dropdown-menu",
+          "settings": {
+            "required": false,
+            "title": "Weekly coffee usage? (kg)",
+            "options": "10-15kg, 15-20kg, 20-30kg, 30-40kg, 40kg+"
+          }
+        },
+        "text_field_HTEV3k": {
+          "type": "text-field",
+          "settings": {
+            "required": false,
+            "multi_line_field": false,
+            "title": "Which coffee do you currently use?"
+          }
+        }
+      },
+      "block_order": [
+        "text_field_9Y4HTH",
+        "text_field_tiAGDt",
+        "text_field_UzVrb7",
+        "text_field_nHw78j",
+        "text_field_NbTV98",
+        "dropdown_menu_qBymea",
+        "dropdown_menu_qATYjE",
+        "text_field_HTEV3k"
+      ],
+      "settings": {
+        "page_title": "",
+        "description": "Are you ready to take your coffee business to extraordinary new heights? Best Bean Best Cup invites you to join forces with us and unleash the full potential of your enterprise.<br><br>Why Partner with Best Bean Best Cup?",
+        "left_item_title_1": "Exquisite Quality",
+        "left_item_description_1": "Our beans are sourced from the most esteemed coffee regions worldwide, ensuring an unparalleled taste experience that will captivate your customers and keep them coming back for more.",
+        "left_item_title_2": "Tailored Support",
+        "left_item_description_2": "Benefit from our dedicated team of experts who are committed to your success. From personalized consultations to bespoke marketing strategies, we provide the support you need to thrive in a competitive market.",
+        "left_item_title_3": "Sustainable Partnership",
+        "left_item_description_3": "Join us in our mission to promote sustainability and ethical sourcing practices within the coffee industry. Together, we can make a positive impact on the environment and the communities we serve.",
+        "right_item_title_1": "Comprehensive Range",
+        "right_item_description_1": "From bold and juicy blends to intricately nuanced single origins, our extensive selection offers something for every palate, allowing you to cater to diverse tastes and preferences with ease.",
+        "right_item_title_2": "Competitive Edge",
+        "right_item_description_2": "In an ever changing industry it's imperative that you don't get left behind. Our Training Centre has mapped out the equipment, products & technologies that will change our industry over the next 5 years. These insights can help set your business and future proof your operation so that you are a success.",
+        "right_item_title_3": "Ready to Transform Your Business?",
+        "right_item_description_3": "Seize the opportunity to partner with Best Bean Best Cup and unlock a world of possibilities for your coffee business.",
+        "form_title": "Together<br> we Grow.",
+        "form_description": "Be our partner. Together, let's brew greatness and redefine the standards of excellence in the coffee industry!"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "wholesale_mbgkgY"
+  ]
+}
